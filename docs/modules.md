@@ -336,6 +336,66 @@ Ce module permet de créer un menu à partir d'une taxonomy
 4. Sélectionner le(s) service(s) sur le site https://opt-out.ferank.eu/fr/install/ (étape 3)
 5. Copier le code dans le body
 
+### Store Locator
+1. Modules :
+    - Geolocation Field : "https://www.drupal.org/project/geolocation"
+    - Geocoder : "https://www.drupal.org/project/geocoder"
+1. Configuration :
+    - Create a Store content type
+    - In your Store create an address field
+    - In your Store create a geolocation field
+    - Link these two links via geocoder using the provider that you want
+    - Create a view that list your store content type filtered by proximity on location field (expose this filter if needed)
+1. Code :
+    - Use google map autocomplete library: ```<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script>```
+    - Make your input autocomplete with this library.
+    - In js use geolocate: https://www.googleapis.com/geolocation/v1/geolocate and geocode: https://maps.googleapis.com/maps/api/geocode libraries.
+    - If you want to search location from address you will transform the address into a lat-lng data with https://maps.googleapis.com/maps/api/geocode/
+    - Then fill lat field and lng field with the data you fetched from this google API.
+    - If you want to geolocate the user use https://www.googleapis.com/geolocation/v1/geolocate
+    - Then fill lat field and lng field with the data you fetched from this google API.
+1. Example (cf. krug project: https://gitlab.com/abecms/moet-hennessy/krug) :
+    1. Configuration:
+        - activate geolocation + geolocation address + geocoder extensions.
+        - install google map provider using composer.
+        - In geocoder configuration link google map provider.
+    1. Code (cf. https://developers.google.com/maps/documentation/geocoding /// https://developers.google.com/maps/documentation/geolocation /// https://developers.google.com/maps/documentation/javascript/places-autocomplete):
+```
+$('.js-form-item').hide();
+
+$('#geolocate').once().click(function(e) {
+    e.preventDefault();
+    $.post(`https://www.googleapis.com/geolocation/v1/geolocate?key=${gmapApiKey}`, function(data) {
+        $('#edit-lat').val(data.location.lat);
+        $('#edit-lng').val(data.location.lng);
+        $('#edit-submit-find-krug').click();
+    })
+});
+
+function initializeAutocomplete() {
+    var element = document.getElementById("address");
+
+    if (element) {
+        var autocomplete = new google.maps.places.Autocomplete(element, {
+            types: ["geocode"]
+        });
+        google.maps.event.addListener(
+            autocomplete,
+            "place_changed",
+            function() {
+            $.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${autocomplete.getPlace().formatted_address.replace(" ", "+")}&key=${gmapApiKey}`, function(data) {
+                console.log('result', data.results[0].geometry.location);
+                $('#edit-lat').val(data.results[0].geometry.location.lat);
+                $('#edit-lng').val(data.results[0].geometry.location.lng);
+            });
+        });
+    }
+}
+google.maps.event.addDomListener(window, "load", function() {
+    initializeAutocomplete();
+});
+```
+
 ## Custom
 
 ### Instagram
