@@ -8,8 +8,8 @@
 module.exports = {
   title: 'Drupal Stickers Book',
   tagline: 'Build a Drupal website in no time !',
-  url: 'https://abecms.github.io',
-  baseUrl: '/book-drupal/',
+  url: 'https://drupal.livingcolor.academy/',
+  baseUrl: '/',
   favicon: 'img/logo-white.png',
   organizationName: 'abecms', // Usually your GitHub org/user name.
   projectName: 'book-drupal', // Usually your repo name.
