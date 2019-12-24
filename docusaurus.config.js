@@ -8,7 +8,7 @@
 module.exports = {
   title: 'Drupal Stickers Book',
   tagline: 'Build a Drupal website in no time !',
-  url: 'http://drupal.livingcolor.academy/',
+  url: 'https://abecms.github.io',
   baseUrl: '/book-drupal/',
   favicon: 'img/logo-white.png',
   organizationName: 'abecms', // Usually your GitHub org/user name.
