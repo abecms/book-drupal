@@ -131,3 +131,12 @@ Ajouter un lien :
 - Pour chaque type de contenu administrable :  exemple Article :https://www.moet.com/fr-fr/node/add/article
 
 Penser à bien placer les liens créer selon vos besoin.
+
+## Comment customiser l'url d'une langue 
+Quand on installe la langue japonaise le code langue est `ja`. Si vous voulez plutôt `jp` alors:
+
+- Dans l'admin
+- Administration => Configuration => Régionalisation et langue => Detection et selection
+- URL => configurer
+- Mettre `jp` à la place de `ja`
+
