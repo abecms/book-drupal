@@ -1,5 +1,3 @@
-# Multi-Langue
-
 Pour activer le multilangue il activer les modules suivants:
 - Configuration translation
 - Content Translation
