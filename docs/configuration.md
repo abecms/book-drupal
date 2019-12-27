@@ -54,16 +54,23 @@ On va voir maintenant comment n'avoir des modules que dans certains environnemen
 
 3. Dans l'env "local", sélectionner le module "Kint Devel". Cela va permettre de ne l'activer que sur les environnements ou il sera explicitement requis.
 
+4. In '/admin/structure/webform/config' check "Enable site-wide dialog support".
+
+5. In '/admin/structure/webform/manage/YOUR_FORM/settings' you can test in Dialog Settings section.
+
+6. In your code on your button/a href add class you can find in the Dialog Settings section.
+
 Pour permettre de créer des webforms autant côté dev que permettre aux utilisateurs de créer leur propre webform en prod, on va créer une config spécifique qui va exclure ces webforms de l'écrasement lors d'un import sur la prod :
 
-4. aller créer le répertoire excluded dans ../config et lui ajouter un fichier .htaccess pour protéger le contenu (on peut récupérer le .htaccess d'un répertoire de Drupal)
-5. Créer dans ```/admin/config/development/configuration/config-split``` la config "excluded" avec comme directory : ```../config/excluded``` et surtout le "disable" en décochant la case "actif" et en décochant "include dependant configuration for gray list".
-6. dans le fichier variables-prod.php ajouter :
+7. aller créer le répertoire excluded dans ../config et lui ajouter un fichier .htaccess pour protéger le contenu (on peut récupérer le .htaccess d'un répertoire de Drupal)
+
+8. Créer dans ```/admin/config/development/configuration/config-split``` la config "excluded" avec comme directory : ```../config/excluded``` et surtout le "disable" en décochant la case "actif" et en décochant "include dependant configuration for gray list".
+9. dans le fichier variables-prod.php ajouter :
 ```
 // This will allow module config per environment and exclude webforms from being overridden
 $config['config_split.config_split.excluded']['status'] = TRUE;
 ```
-7. Désormais, pour faire les imports de config sur la prod, il faudra faire :
+10. Désormais, pour faire les imports de config sur la prod, il faudra faire :
 ```
 #execute some drush commands
 echo "-----------------------------------------------------------"
