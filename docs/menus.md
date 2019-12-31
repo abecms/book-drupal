@@ -88,6 +88,22 @@ function solocal_preprocess_block(&$variables) {
 on utilise ensuite la suggestion adaptée pour skinner différemment les 2 blocs.
 - Dans le twig, utiliser twig_tweak : ```{{ drupal_entity('block', 'selecteurdelangue_mobile') }}``` si l'un des selecteur est dans une region cachée, sinon afficher la region de façon standard.
 
+Pour skinner les link comme on le souhaite :
+```
+{%- for item in links -%}
+    <li class="language-item{% if item.text==links['#lang'] %} active{% endif %}">
+	<div>
+	    <!--{{ item.link }} this line must stay -->
+	    <a href="{{ item.link['#url'] }}" style="color: {% if item.text==links['#lang'] %}#ccad7b{% else %}#83786f{% endif %}; text-decoration:none;">
+		{{ item.text }}
+	    </a>
+	</div>
+    </li>
+{%- endfor -%}
+```
+
+Keep the comment : This will render the item.link and populate the attributes (including #url). Thanks to this trick, you can skin the links the way you want.
+
 ## Liens d'actions sur le contenu affiché en front
 - Dans la structure des blocs admin/structure/block
 - Activer le menu Onglets dans Contenu
