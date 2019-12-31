@@ -57,6 +57,7 @@ On va voir maintenant comment n'avoir des modules que dans certains environnemen
 Pour permettre de créer des webforms autant côté dev que permettre aux utilisateurs de créer leur propre webform en prod, on va créer une config spécifique qui va exclure ces webforms de l'écrasement lors d'un import sur la prod :
 
 4. aller créer le répertoire excluded dans ../config et lui ajouter un fichier .htaccess pour protéger le contenu (on peut récupérer le .htaccess d'un répertoire de Drupal)
+
 5. Créer dans ```/admin/config/development/configuration/config-split``` la config "excluded" avec comme directory : ```../config/excluded``` et surtout le "disable" en décochant la case "actif" et en décochant "include dependant configuration for gray list".
 6. dans le fichier variables-prod.php ajouter :
 ```
