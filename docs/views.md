@@ -45,6 +45,25 @@ Puis dans la vue :
 - Mettre les 2 champs en filtres contextuels avec "fournir une valeur par défaut" (ici identifiant depuis le contexte de la route car je veux les articles de la personne loggée en ce moment).
 -Dans paramètres de la requête, cocher "contextual filter OR"
 
+## Titre d'une vue
+le titre de votre vue ne s'affiche pas en front...
+Pour l'afficher en front, il faut dans un module mettre : 
+
+```
+/**
+ * Add title of the view on the views...
+ * + style on the krug lovers form
+ */
+function customization_preprocess_views_view(&$variables) {
+  $view = $variables['view'];
+  $variables['title'] = [
+    '#markup' => $view->getTitle(),
+  ];
+}
+```
+
+Vous pourrez alors afficher le titre de la vue sur votre front : {{title}}
+
 ## Passer une variable à une vue
 - Depuis Twig Tweak, on peut faire ça :
 ```
