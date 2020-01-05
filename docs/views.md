@@ -154,6 +154,22 @@ Si vous avez une vue intégrée dans un node (par exemple "autres articles" affi
 - Ajouter l'ID et remplir "fournir une valeur par défaut" "Quand la valeur de filtre n'est pas dispo" avec l'IDdu contenu à partir de l'URL
 - Tout en bas, dans "MORE", cocher exclure, pour exclure cette valeur d'ID.
 
+## form exposed : Ajouter un style ou une classe au tag <form>
+  Le twig exposed ne contient pas le tag form. Il faut passer par un module pour modifier ce tag. Par exemple:
+
+```
+/**
+ * Add style on the lovers form
+ */
+function customization_preprocess_views_view(&$variables) {
+  if ($variables['id'] === 'lovers') {
+    $variables['exposed']['#attributes']['style'] = 'display:flex; align-self: flex-end';
+  }
+}
+```
+Sur le formulaire de la vue lovers, on va ajouter ```style="display:flex; align-self: flex-end"``` sur le tag form.
+Pour ajouter une classe : ```$variables['exposed']['#attributes']['class'][] = 'myClass';```
+  
 ## form exposed : Séparer le champ sort_by des champs de filtrage :
 ```
 {{ form|without('sort_by') }}
@@ -161,6 +177,75 @@ Si vous avez une vue intégrée dans un node (par exemple "autres articles" affi
 {{ form.sort_by }}
 ```
 Il suffit d'afficher d'abord le form SANS le field en question, puis afficher séparément le field voulu. Valable pour d'autres objets Drupal.
+
+## form exposed : Skinner les champs de filtre et de tri
+une première solution est d'utiliser le module BEF (Better Exposed Filter), mais cela peut-être compliqué d'arriver au résultat souhaité.
+
+Une autre solution : Le faire soi-même. Voici comment créer un filtrage + tri en ajax sur une vue.
+
+1. Cocher "ajax" dans la vue, configurer les filtres et les tris exposés à l'utilisateur (si on ne veut pas rendre l'ordre de tri sléecitonnable par défaut, il faut aller le décocher dans Advanced/exposed form/Exposed form style/settings)
+2. sur le front, utiliser les suggestions pour spécialiser le html de l'exposed et des champs.
+Pour remplacer un select par des ul/li par exemple, il suffit de cacher le select, de cacher le bouton de soumission du formulaire, et d'ajouter du js pour qu'au clic sur un li, on mette à jour la valeur du select puis on clique sur le bouton de soumission. Exemple pour un "trier par" on créer un twig ```select--sort-by.html.twig``` :
+```
+{% spaceless %}
+  <select{{ attributes.addClass('js-select-sortby').setAttribute('style', 'display:none') }}>
+    {% for option in options %}
+      {% if option.type == 'optgroup' %}
+        <optgroup label="{{ option.label }}">
+          {% for sub_option in option.options %}
+            <option value="{{ sub_option.value }}"{{ sub_option.selected ? ' selected="selected"' }}>{{ sub_option.label }}</option>
+          {% endfor %}
+        </optgroup>
+      {% elseif option.type == 'option' %}
+        <option value="{{ option.value }}"{{ option.selected ? ' selected="selected"' }}>{{ option.label }}</option>
+      {% endif %}
+    {% endfor %}
+  </select>
+{% endspaceless %}
+<div class="filter-block">
+    <ul class="filter-list w-list-unstyled">
+        {% for option in options %}
+            <li class="filter-item{{ option.selected ? ' active' }}">
+                <div data-selectid="{{ option.value }}" class="js-select-ajax-sortby">{{ option.label }}</div>
+            </li>
+            {% if option.selected %}
+                <script>
+                  if (window.jQuery) {
+                      jQuery('.filter-container').find('.js-btn-sortby').html('{{ option.label }}');
+                  }
+                </script>
+            {% endif %}
+        {% endfor %}
+    </ul>
+</div>
+
+<script>
+if (!window.jQuery) {
+  document.addEventListener("DOMContentLoaded", function(event) {
+    jQuery('.js-select-ajax-sortby').on('click', function() {
+        jQuery(this).closest('.filter-selector').find('.js-select-sortby').val(jQuery(this).data('selectid'));
+        jQuery(this).closest('form').find('.js-form-submit').click()
+    })
+  });
+} else {
+  jQuery('.js-select-ajax-sortby').on('click', function() {
+      jQuery(this).closest('.filter-selector').find('.js-select-sortby').val(jQuery(this).data('selectid'));
+      jQuery(this).closest('form').find('.js-form-submit').click()
+  })
+}
+</script>
+
+```
+La première partie est du copier/coller du select d'origine avec ```.addClass('js-select-sortby').setAttribute('style', 'display:none')```qui permet de lui attacher une classe qui nous servira à le trouver facilement, et un atrribut display:none pour le cacher.
+
+La seconde partie est le html souhaité.
+Le js, enfin permet de détecter quand on clique sur le li de :
+1. retrouver le select et lui mettre la valeur sélectionnée
+2. cliquer sur le bouton "soumettre" qui va faire l'appel ajax.
+
+Le test ```if(!window.jQuery)``` permet de savoir si on load ce twig avec la page (au premier chargement), ou si ce twig est retourné lors des appels ajax suivants. C'est aussi simple que ça ! En conservant le select d'origine de Drupal, on bénéficie de toutes ses fonctionnalités associées (appel d'ajax).
+
+Une autre solution pour le js serait de le déplacer dans un drupal-ajax.js.
 
 ## Dans une view, dans l'exposed filter, n'afficher que les termes de taxonomie qui ont au moins un node associé
 
@@ -264,4 +349,3 @@ function h1765_preprocess_views_view_field(&$variables, $hook) {
 
 ## Afficher le nom d'une valeur de taxonomie depuis un row in rows
 ``` {{ row.content['#node'].field_categorie_document.0.entity.name.value }} ```
-
