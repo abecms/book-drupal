@@ -30,3 +30,8 @@ function MY_MODULE_tokens($type, $tokens, array $data, array $options, Drupal\Co
   return $replacements;
 }
 ```
+
+## Utiliser un token en twig
+```
+{{ webform_token('[webform_submission:created]', webform_submission) }}
+```

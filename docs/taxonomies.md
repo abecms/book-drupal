@@ -150,10 +150,3 @@ Pour afficher par exemple le champ description du terme. Il faut:
 1. Créer un filtre contextuel sur le nom du terme de taxonomie (cf. explication précédente)
 1. Retourner dans la vue parent (la vue précédente) et créer un header qui affiche une zone de vue globale. Sélectionner la vue de type block précédemment créée, et cocher "Hériter des filtres contextuels"
 ENJOY !
-
-## Traductions
-Pour afficher la valeur du contenu traduite :
-- d'un paragraph => ``` f.entity.translation(paragraph.language).field_title.value ```
-- d'un node => ``` node.field_discover.entity.translation(node.langcode.value).field_title.value ```
-et/ou utiliser
-```{{ content.field_example }}``` plutot que ```{% for f in paragraph.field_example %}```

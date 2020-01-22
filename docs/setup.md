@@ -19,6 +19,7 @@
 ### CONFIG
 - docroot/modules/contrib/config_filter
 - docroot/modules/contrib/config_split
+- docroot/modules/contrib/config_auto_export
 
 ### NODE
 - docroot/modules/contrib/paragraphs
@@ -136,6 +137,9 @@ Cela vous pemrettra d'afficher les suggestions dans le code source de vos pages 
 # BDD
 ## chargement de la base de données
 mysql -u #user# -p moet < #databasefile#.sql
+
+## Supprimer les locks sur un CRON Ultimate_cron
+```DELETE FROM ultimate_cron_lock WHERE name = 'import_content_cron';```
 
 ## Mesurer la taille des tables de la BDD
 ```
@@ -267,7 +271,23 @@ Se placer à la racine du projet. --dry-run pour tester sans appliquer le patch,
 Pour l'exécuter :
 ```patch -p1 --ignore-whitespace --fuzz 3 < patches/statistics-all-entities-2532334-43.patch```
 
+# Git
+## Cheat sheet
+Si une erreur ```error: unable to unlink old 'docroot/sites/default/settings.php': Permission denied``` apparait lors de git pull ou checkout, faire :
+```chmod ug+w sites/default```
+
+Puis pour relancer le git pull si des fichiers untracked sont apparus :
+```
+git add -A        # stage all files so they are now stashable
+git stash         # stash them - the working dir is now clean
+git pull          # pull
+git stash drop    # forget the stashed changes. Alternatively: git stash pop
+```
+
 # Drush
+
+## Composer
+Pour exécuter Drush depuis vendor/bin/drush, il faut configurer le fichier .env à la racine du projet avec les paramètres de BDD. Notre starter Drupal contient un .env.example comme modèle
 
 ## Debug drush
 1. drush sqlq "DELETE FROM cache_config"
@@ -287,6 +307,7 @@ ATTENTION : Si vous avez un message d'erreur sur deepcopy quand vous exécuter d
 1. cache rebuild : drush cr (--all)
 1. update db : drush updb (-y)
 1. Remove module : drush pm-uninstall
+1. Delete a specific node : drush entity:delete node ```<nid>```
 
 # Acquia cloud
 ## Mise à jour Drupal core via acquia cloud
@@ -303,3 +324,35 @@ ATTENTION : Si vous avez un message d'erreur sur deepcopy quand vous exécuter d
 1. Désinstaller le module problématique (cf. drush cheat sheet)
 1. Rebuild le cache (cf. drush cheat sheet)
 
+# Heberger du contenu html statique sur drupal
+
+## source de l'iframe (example)
+
+```html
+<style type="text/css">main {
+width: 100%;
+}
+.field-name-body.field-type-text-with-summary {
+margin: 0;
+padding: 0;
+width: 100%;
+}
+</style>
+<iframe height="1600" id="ifrm" src="http://dev.krug.com:8800/rockpepperscissors/" width="100%"></iframe>
+```
+
+## Allow style tag in ckeditor
+- ```admin/config/content/ckeditor/edit/Full```
+- ```Advanced content filter``` to ```disabled``` and ```save```
+
+## Static
+The static should be put in files directory of the drupal.
+
+## Config nginx
+
+```nginx
+    location ~ /whatyouwantasurl/?(.*)$ {
+        alias /absolute/path/to/files/staticsitedirectory/$1;
+        index index.html;
+    }
+```

@@ -37,6 +37,12 @@ Create a template for the newsletter body simplenews-newsletter-body--[newslette
 - Installer le module metatag
 - Pour personnaliser un node, il suffit de créer un nouveau champ de type metatag. Automatiquement, il permettra de personnaliser les meta sur chaque node
 - pour placer l'image issue d'un champ du node qui est contenue dans un media : ```[node:field_visuel:entity:field_media_image:entity:url]```
+- pour activer et configurer le partage Facebook et twitter :
+  - Activer les modules Metatag: Twitter Cards et Metatag: Open Graph
+  - Aller sous admin/config/search/metatag/settings et activer les options Open Graph et Twitter Cards pour les entités concernées
+  - Puis modifier les metatag par défaut : sans /admin/config/search/metatag
+    - pour l'entité  concernée cliquer sur modifier
+    - ajouter la valeur souhaitée pour les différents tag. Exemple pour le metatag MEDIA VIDEO, mettre [media:field_poster:large] pour la version large de l'url du poster
 
 ### ElasticSearch
 Note: ```http://letstoob.info/drupal-8/how-to-integrate-elasticsearch-6-3-0-with-drupal-8-5/```
@@ -51,7 +57,6 @@ Note: ```http://letstoob.info/drupal-8/how-to-integrate-elasticsearch-6-3-0-with
 1. Select ```Select this cluster default connection```
 1. Select ```Use multiple nodes connection```
 1. Click ```save```
-2.
 
 
 ### Videos transcoding
@@ -395,6 +400,16 @@ google.maps.event.addDomListener(window, "load", function() {
     initializeAutocomplete();
 });
 ```
+
+## Shield
+
+- Attention si le module du core HTTP BASIC AUTHENTICATION il rentre en conflit avec shield.
+Solution :
+- Installer a dernière version de shield `composer require 'drupal/shield:^1.3'`
+- Appliquer  le patch ci-dessous patch `https://www.drupal.org/files/issues/2019-09-20/2815945-shield-1.3-rc1_basic_auth_compatibility-40.patch`:
+
+
+Methode pour appliquer le patch [title](https://github.com/abecms/book-drupal8/blob/master/dev.md#patches)
 
 ## Custom
 

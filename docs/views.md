@@ -47,7 +47,7 @@ Puis dans la vue :
 
 ## Titre d'une vue
 le titre de votre vue ne s'affiche pas en front...
-Pour l'afficher en front, il faut dans un module mettre : 
+Pour l'afficher en front, il faut dans un module mettre :
 
 ```
 /**
@@ -173,7 +173,7 @@ Si vous avez une vue intégrée dans un node (par exemple "autres articles" affi
 - Ajouter l'ID et remplir "fournir une valeur par défaut" "Quand la valeur de filtre n'est pas dispo" avec l'IDdu contenu à partir de l'URL
 - Tout en bas, dans "MORE", cocher exclure, pour exclure cette valeur d'ID.
 
-## form exposed : Ajouter un style ou une classe au tag <form>
+## form exposed : Ajouter un style ou une classe au tag ```<form>```
   Le twig exposed ne contient pas le tag form. Il faut passer par un module pour modifier ce tag. Par exemple:
 
 ```
@@ -188,7 +188,7 @@ function customization_preprocess_views_view(&$variables) {
 ```
 Sur le formulaire de la vue lovers, on va ajouter ```style="display:flex; align-self: flex-end"``` sur le tag form.
 Pour ajouter une classe : ```$variables['exposed']['#attributes']['class'][] = 'myClass';```
-  
+
 ## form exposed : Séparer le champ sort_by des champs de filtrage :
 ```
 {{ form|without('sort_by') }}

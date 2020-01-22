@@ -77,6 +77,52 @@ drush @prod config-import -y
 ```
 Afin de d'abord exporter les webforms et forms déjà faits en prod et accepter les nouveaux livrés.
 
+### Automatisation des exports et imports de config en dev
+#### Export
+Installer le module drupal/config_auto_export et le configurer : Désormais les config sont exportées en temps réel. Il ne reste plus qu'à les diff comme du code classique avant un commit. Attention : Au 2/1/2020, un patch livingcolor est nécessaire pour prendre en compte les suppressions de config
+
+#### Import
+- On va utiliser composer pour installer les hooks git
+- Ces hooks sur le git pull et le git checkout vérifient si composer.lock a changé et lancent un composer install, et si un fichier de config yml a changé et exécute un vendor/bin/drush split-config:import -y
+
+Dans la partie "extra" de composer:
+```
+"hooks": {
+    "post-merge": [
+	"bin/post-merge.sh"
+    ],
+    "post-checkout": [
+	"bin/post-checkout.sh"
+    ]
+},
+```
+les 2 fichiers post-merge.sh et post-checkout.sh sont les mêmes :
+```
+#/usr/bin/env bash
+# MIT © Sindre Sorhus - sindresorhus.com
+
+# git hook to run a command after `git pull` if a specified file was changed
+# Run `chmod +x post-merge` to make it executable then put it into `.git/hooks/`.
+
+changed_files="$(git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD)"
+
+check_run() {
+	echo "$changed_files" | grep --quiet "$1" && eval "$2"
+}
+
+check_config() {
+  echo "$changed_files" | grep --quiet ".*\.yml" && eval "$1"
+}
+
+# Import Drupal 8 configuration
+check_config "vendor/bin/drush cim -y"
+
+# Installing composer dependencies
+check_run composer.lock "composer install"
+```
+
+Désormais, l'export et l'import de config sont auto sur la dev !
+
 ## Mise en prod
 - Désactiver le DB logging (Disable and uninstall Database logging module https://docs.acquia.com/acquia-cloud/monitor/logs/)
 - Désactiver le stockage des recherches dans la BDD (https://docs.acquia.com/acquia-search/)

@@ -1,4 +1,10 @@
 # User
+
+## Paths
+1. /user/login
+1. /user/register
+1. /user/{user.id}
+
 ## Créer une page profil sur le front
 1. Créer un paramètre d'affichage personnalisé (nouveau mode de saisie) sur le form user (en admin) et l'activer puis choisir les champs utilisés sur cet affichage (on trouve les modes de saisie en bas de "gérer l'affichage du formulaire").
 1. Créer un module et mettre (afin de n'attribuer le form personnalisé que sur le front - ici le mode de saisie est "front"):
@@ -64,4 +70,10 @@ en twig:
  {% if not logged_in %}
  ...
  {% endif %}
+```
+
+## Afficher des champs custom du user
+
+```
+{{ user.field_example.0.value }}
 ```

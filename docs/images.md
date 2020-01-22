@@ -1,6 +1,7 @@
 # Images
 ## Introduction
 Il faut systématiquement utiliser les medias de Drupal plutot que des images directement
+1. Modules nécessaires: media, media library
 
 ## Utiliser des images responsives
 1. Créer le fichier de configuration montheme.breakpoints.yml à la racine et définir les breakpoints
@@ -24,22 +25,27 @@ montheme.desktop:
   multipliers:
     - 1x
 ```
-1.Allez dans Image toolkit
+1. Allez dans Image toolkit
   - Administration / Configuration / Media / Image toolkit
 
  Saisir 100 dans la valeur de qualité.
 
-1.Dans le BO, définir les différents styles d'image qui correspondent aux différents breakpoints
+1. Dans le BO, définir les différents styles d'image qui correspondent aux différents breakpoints
   - Administration / Configuration / Media / Styles d'images
-  - Selectionner le fichier breakpoint (e.g. montheme) dans la liste déroulante
-1. Dans le BO créer un style d'image adaptatif et faire correspondre chaque breakpoiints aux styles créer précédement (point 1)
+  - Exemple : landscape 480x
+  - Effets :
+    - si un crop style à été défini l'ajouter en premier
+    - ajouter le scale (largeur ou hauteur) - autoriser l'upscale
+
+1.  Dans le BO créer un style d'image adaptatif et faire correspondre chaque breakpoints aux styles créer précédement (point 1)
   - Administration / Configuration / Media  / Styles d'images adaptatifs
-1. Le champ image doivent être défini en tant que Media de type image
-1. Dans le type de média "Image", configurer l'affichage avec le format Image adaptative, puis dans le settings faire correspondre le style d'image adaptatif avec le style créer précédement (point 2)
+
+1. Le champ image "field_visuel" du node ou du paragraph doit être défini en tant que Media de type image
+1. Dans le type de média "Image", configurer l'affichage avec le format Image adaptative, en faisant correspondre le style d'image adaptatif avec le style créé précédement (point 2)
   - Administration / Structure / Types de média / Gérer l'affichage
-1. Pour afficher l'image dans le twig  ; ``` {{ content.field_visuel }} ```
-1. Mettre à jour le format d'affichage du champ  field_visuel :
-- Administration / Structure / Types de paragraphe (ou Type de contenu) / Gérer l'affichage
+1. Pour afficher l'image responsive dans le twig  ; ``` {{ content.field_visuel }} ```
+1. Dans "admin/structure/paragraphs_type/nomduparagraph/display"
+  - Champ image - Label "Hidden" - Format "Render Entity"
 
 
 ## Image browser

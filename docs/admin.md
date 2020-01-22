@@ -54,3 +54,13 @@ Afin de définir les droits d'action (A publier, A corriger...) selon  les rôle
 - Utiliser les pages d'administration et l'aide
 1. Accéder aux informations d'un contenu (auteur...)
 - Administrer le contenu
+
+## Configurer un autocomplete spécifique pour un champ referenced field
+- Créer une vue de type entity reference
+- Ajouter les champs qu'on souhaite afficher ou utiliser pour la recherche
+- dans Format, choisir les champs sur lesquels rechercher
+- Dans les champs, sélectionner les champs souhaités, et les passer en "exclure de l'affichage", sauf le dernier pour lequel on va réécrire les résultats "Remplacer le rendu de ce champ par un texte personnalisé" en utilisant du twig et les champs qui sont cachés.
+
+Ensuite, se rendre sur la configuration du node, dans la configuration du champs referenced entity et choisir dans type de référence /méthode de référence la vue que l'on vient de créer.
+
+ATTENTION, un patch est nécessaire (version D8 actuelle 8.7.* : "entity reference display on admin autocomplete": "patches/2174633-351.patch"
