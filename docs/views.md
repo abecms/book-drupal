@@ -368,3 +368,25 @@ function h1765_preprocess_views_view_field(&$variables, $hook) {
 
 ## Afficher le nom d'une valeur de taxonomie depuis un row in rows
 ``` {{ row.content['#node'].field_categorie_document.0.entity.name.value }} ```
+
+
+## Trier un résultat en fonction de la date de modification
+
+
+### Si voulez en faire un filtre en front classé pas date la plus récente
+- Critere de tri
+- Ajouter un critère de tri de type `Contenu : Modifié` - `Content: Changed`
+- Cocher `exposer ce tri aux visiteurs`
+- Etiquette/label `plus récent/newer fisrt`
+- Choisissez `Trier par ordre décroissant`
+- Granularité `minute`
+- `Appliquer`
+
+### Si voulez en faire un filtre en front classé pas date la plus anciennne
+- Critere de tri
+- Ajouter un critère de tri de type `Contenu : Modifié` - `Content: Changed`
+- Cocher `exposer ce tri aux visiteurs`
+- Etiquette/label `plus ancienne/older fisrt`
+- Choisissez `Trier par ordre croissant`
+- Granularité `minute`
+- `Appliquer`
