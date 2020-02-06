@@ -158,7 +158,7 @@ et/ou utiliser
 - Dans la vue si il y a une pagination avec le module [Views Infinite Scroll](https://www.drupal.org/project/views_infinite_scroll) - on peut traduire le bouton `Load More`
 - Dans la vue cliquez sur `Traduire View`
 - Ajouter une traduction `French` par exemple
-- `Option d'affichage par défaut > Pagination > Infinite scroll pager > Cartographie > texte du bouton`
+- `Master paramètres d'affichage >` Nom de la vue `Option d'affichage par défaut > Pagination > Infinite scroll pager > Cartographie > texte du bouton`
 - Renseignez la traduction `Afficher plus`
 - N'oubliez pas d'`enregistrer la traduction` en bas de page
 
@@ -166,7 +166,7 @@ et/ou utiliser
 - Dans la vue si il y a des critères de tri: Exemple `Contenu : Écrit le` pour un tri nouveau au plus récent ou inverse 
 - Dans la vue cliquez sur `Traduire View`
 - Ajouter une traduction `French` par exemple
-- `Master paramètres d'affichage > Nom de la vue Option d'affichage par défaut > Tris > Tri par date (si par date) > Newest to oldest > Étiquette`
-- - `Master paramètres d'affichage > Nom de la vue Option d'affichage par défaut > Tris > Tri par date (si par date) > Oldes to newest > Étiquette`
+- `Master paramètres d'affichage >` Nom de la vue `Option d'affichage par défaut > Tris > Tri par date (si par date) > Newest to oldest > Étiquette`
+- - `Master paramètres d'affichage > `Nom de la vue `Option d'affichage par défaut > Tris > Tri par date (si par date) > Oldest to newest > Étiquette`
 - Renseignez la traduction `Plus récent au plus ancien`
 - N'oubliez pas d'`enregistrer la traduction` en bas de page
