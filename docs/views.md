@@ -394,12 +394,12 @@ function h1765_preprocess_views_view_field(&$variables, $hook) {
 ## Changer la portée de la recherche dans un champ de type Entity reference
 Par défaut la recherche dans un champ de type "Entity reference" se fait sur le titre du contenu. Pour pouvoir chercher sur un autre champs du node :
 1. Créer une vue qui porte sur le contenu concerné, 
-1. Cliquer sur Ajouter et choisir Entiry reference
+1. Cliquer sur Ajouter et choisir Entity reference
 1. Dans FORMAT :
 - Format : Liste Entity Reference | Dans Paramètres choisir les champs sur lesquels va porter la recherche (ex: identifiant, titre)
-- Afficher : Champs Entity Reference en ligne | Dans Paramètres choisir si besoin les champs qui seront affichés dans la recherche
+- Afficher : Champs Entity Reference en ligne | Dans Paramètres choisir si nécessaire les champs qui seront affichés dans le champ de recherche
 1. Maintenant il fait appliquer cette vue sur un champ de type entity reference
-- Ajouter le champ sur le type de contenu concerné
-- dans Reference type : 
-  - dans REFERENCE METHOD choisir Filter by an entity reference view dans referecne method
-  - dans VIEW USED TO SELECT THE ENTITIES sélectionner la vue préalablement créée
+- Ajouter un champ de type entity reference sur le type de contenu concerné
+- Dans Reference type : 
+  - REFERENCE METHOD choisir Filter by an entity reference view
+  - VIEW USED TO SELECT THE ENTITIES sélectionner la vue préalablement créée
