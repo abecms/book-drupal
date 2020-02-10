@@ -83,7 +83,7 @@ Installer le module drupal/config_auto_export et le configurer : Désormais les 
 
 #### Import
 - On va utiliser composer pour installer les hooks git
-- Ces hooks sur le git pull et le git checkout vérifient si composer.lock a changé et lancent un composer install, et si un fichier de config yml a changé et exécute un vendor/bin/drush split-config:import -y
+- Ces hooks sur le git pull et le git checkout vérifient si composer.lock a changé et lancent un composer install, et si un fichier de config yml a changé et exécute un vendor/bin/drush config-split:import -y
 
 Dans la partie "extra" de composer:
 ```

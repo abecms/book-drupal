@@ -34,7 +34,6 @@ Pour détecter si le lien est externe ou interne :
 {% endif %}
 ```
 
-
 ## Sélecteur de langue :
 - Pour récupérer la valeur de la langue active :
 
@@ -114,4 +113,47 @@ Keep the comment : This will render the item.link and populate the attributes (i
 1. Pour l'utiliser sur les pages, dans le code : ``` {{ drupal_region('breadcrumb') }} ```
 1. Personnaliser les twig via les suggestions (exp: block--breadcrumb.html.twig ET/OU breadcrumb.html.twig)
 
-*NB : les chemins de breadcrumb sont à déterminer dans pathauto*
+Pour faire correspondre la valeur du breadcrumb avec pathauto :
+1. Décocher Use the real page title when available, Use menu title when available, Use page title as fallback for menu title
+
+### Customize a breadcrumb
+
+If you want to use a custom field (ie. "field_titre_push") instead of the title, you can proceed as below (for a node based on an "article" content type):
+Don't forget to untick "Use the real page title when available, Use menu title when available, Use page title as fallback for menu title" in easy breadcrumb settings.
+
+```
+/**
+ * Implements hook_system_breadcrumb_alter().
+ */
+function customization_system_breadcrumb_alter(Breadcrumb &$breadcrumb, RouteMatchInterface $route_match, array $context) {
+  if ($route_match->getRouteName() == 'entity.node.canonical' && !is_null($route_match->getRawParameter('node'))) {
+    $node = Node::load($route_match->getRawParameter('node'));
+    if ($node->bundle() == 'article') {
+      $links = $breadcrumb->getLinks();
+      $titre = strip_tags($node->get('field_titre_push')->value);
+      end($links)->setText($titre);
+      $breadcrumb = new Breadcrumb();
+      $breadcrumb->setLinks($links);
+    }
+  }
+}
+```
+
+For a media :
+
+```
+/**
+ * Implements hook_system_breadcrumb_alter().
+ */
+function customization_system_breadcrumb_alter(Breadcrumb &$breadcrumb, RouteMatchInterface $route_match, array $context) {
+  if ($route_match->getRouteName() == 'entity.media.canonical' && !is_null($route_match->getRawParameter('media'))) {
+    $media = Media::load($route_match->getRawParameter('media'));
+    if ($media->bundle() == 'video') {
+      $links = $breadcrumb->getLinks();
+      end($links)->setText($media->get('field_titre')->getString());
+      $breadcrumb = new Breadcrumb();
+      $breadcrumb->setLinks($links);
+    }
+  }
+}
+```
