@@ -27,3 +27,20 @@
 1. Form Trigger method option select Manual - on click event.
 1. In Add css id add “.class_utilisee_pour_le_lien_du_cta”.
 1. Click on convert to pop-up.
+
+## Tips
+1. Show/Hide password(input field)
+  - Add a picto in the input field
+  - Add js code on this picto (it toggles the password field type between text/password) :
+  ```
+  $(".link--password").click(function(e) {
+      e.preventDefault();
+      console.log('input:', $(this).parent().siblings('input'));
+      var input = $(this).parent().siblings('input');
+      if (input.attr("type") == "password") {
+        input.attr("type", "text");
+      } else {
+        input.attr("type", "password");
+      }
+  });
+  ```
