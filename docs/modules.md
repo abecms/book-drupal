@@ -527,5 +527,10 @@ Here's my solution using only Graph API Explorer & Access Token Debugger:
 
 ### view unpublished
 
-Lorsque des droits restreints sont appliqués sur des types de contenus pour un rôle donné, les contenus unpublished ne sont pas visibles de ce rôle. L'installation du module view_unpublished permet d'appliquer les droits de voir les contenus non publiés pour chaque type de contenu (see "view unpublished" in admin/people/permissions). 
-Once installed, you need to regenerate the rights (a message will appear)
+Lorsque des droits restreints sont appliqués sur des types de contenus pour un rôle donné, les contenus unpublished ne sont pas visibles de ce rôle. L'installation du module view_unpublished permet d'appliquer les droits de "voir les contenus non publiés" pour chaque type de contenu (voir "view unpublished" dans admin/people/permissions). 
+Une fois installé, il est nécessaire de recalculer les droits (un message apparaitra en BO).
+
+
+### Robot
+Afin de définir la valeur du fichier robots.txt installer le module "RobotsTxt". 
+A noter : Il est nécessaire de supprimer (ou renommer) le fichier robots.txt déjà présent pour que le module affiche son propre robots.txt
