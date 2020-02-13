@@ -170,3 +170,19 @@ et/ou utiliser
 - - `Master paramètres d'affichage > `Nom de la vue `Option d'affichage par défaut > Tris > Tri par date (si par date) > Oldest to newest > Étiquette`
 - Renseignez la traduction `Plus récent au plus ancien`
 - N'oubliez pas d'`enregistrer la traduction` en bas de page
+
+
+### Trouver la langue de la page 
+- Pour une view :
+Pour chercher la langue dans une vue on va chercher l'url de la page qui nous donne généralement la langue. 
+(cette solution n'est pas la plus optimisé, c'est une astuce)
+```
+ {% if  exposed["#action"] != '/fr/krug-lovers'%}
+ /* ici on cherche si la langue est française */ 
+```
+- Pour un node :
+``` 
+{{ node.langcode.value  }}
+
+``` 
+    
