@@ -402,3 +402,14 @@ Il faut configurer le header ```X-Frame-Options:```
 1. La concaténation de strings :
 	- "Heure de publication: " ~ {{ node.field_published.value }}
 	- "background-image: url(#{file_url(node.field_visuel_push.entity.field_media_image.entity.uri.value)});"
+
+2. Réduction de string :
+
+    >  Pour couper une chaîne de caractere si elle est trop longue et rajouter '...' a la fin 
+
+      ```
+      {{ chemin.du.text.value|length > 20 ? chemin.du.text.value|slice(0, 20) ~ '...' : chemin.du.text.value  }}
+
+      /* ici la chaine de caractere est couper au caractere 20 */
+
+      ```
