@@ -7,6 +7,10 @@ Un patch a été créé pour le projet "Consommateurs & Citoyen". Ce patch perme
 
 ## Contrib
 
+### color field
+1. Installer le module color field (https://www.drupal.org/project/color_field)
+2. Ajouter le champ color au contenu souhaité et le configurer dans la section "gérer l'affichage du formulaire"
+
 ### cookieconsent
 1. Installer le module Cookie consent  (https://www.drupal.org/project/cookieconsent)
 2. Configurer les donnée de personnalisation (texte, lien vers la page de consentement, css)
