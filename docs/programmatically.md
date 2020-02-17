@@ -1,6 +1,7 @@
 # Create a module
 
 ## Create a checkout pane
+- cf. https://docs.drupalcommerce.org/commerce2/developer-guide/checkout/create-custom-checkout-pane
 
 ### What is a checkout pane ?
 1. It's a section you can place/replace in commerce checkout flows(form) section.
@@ -46,7 +47,6 @@ class CustomMessagePane extends CheckoutPaneBase {
 
 
 ### Create a field in a form/ a pane form
-1. cf. https://docs.drupalcommerce.org/commerce2/developer-guide/checkout/create-custom-checkout-pane
 1. To create a field in a form for example you have to use a form builder ```protect function buildForm(array $form, FormStateInterface $form_state, array &$complete_form)```
 1. Then in the region you want to add a field place the it.
   - Example for markup field :
