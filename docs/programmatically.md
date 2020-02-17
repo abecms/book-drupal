@@ -7,6 +7,7 @@
 1. Path => /admin/commerce/config/checkout-flows/manage/default
 
 ## Create a field in a form/ a pane form
+1. cf. https://docs.drupalcommerce.org/commerce2/developer-guide/checkout/create-custom-checkout-pane
 1. To create a field in a form for example you have to use a form builder ```protect function buildForm(array $form, FormStateInterface $form_state, array &$complete_form)```
 1. Then in the region you want to add a field place the it.
   - Example for markup field :
