@@ -134,3 +134,20 @@ Il faut ajouter directory avant le nom du répertoire
 ```
 /{{directory}}/images
 ```
+
+## Image Site settings
+
+Pour afficher l'image contenu dans un site settings:
+
+- A l'aide de kint() on se rend compte qu'il n'y a que l'id
+  donc on va utiliser l'écriture ci-dessous .
+```
+ {{ drupal_entity(‘media’, site_settings.image_oenology.image_youngest) }}
+```
+  grâce a cela on retrouve l'image associé a l'id .
+
+- Enfin il ne reste plus qu'à kint() pour retrouver le chemin de l'url.
+Ce qui donne :
+```
+{{ drupal_entity(‘media’, site_settings.image_oenology.image_youngest)[‘#media’].field_media_image.entity.uri.value }}
+```
