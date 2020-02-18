@@ -303,6 +303,13 @@ ATTENTION : Si vous avez un message d'erreur sur deepcopy quand vous exécuter d
 - dans /var/www/html/monProjet.dev/docroot/
 - executer drush cr
 
+### Retrieve database from acquia cloud
+- If you have this message when you try to download database from acquia cloud dev. 
+- `The size of BLOB/TEXT data inserted in one transaction is greater than 10% of redo log size. Increase the redo log size using innodb_log_file_size.`
+- Go to Dev cloud website `nameoftheprojectdevcloud.acquia-sites.com`
+- Go to `admin/config/development/performance` and `Clear all caches`
+- try again to `pull from cloud dev` database
+
 ## Cheat sheet
 1. cache rebuild : drush cr (--all)
 1. update db : drush updb (-y)
