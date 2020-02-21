@@ -312,11 +312,16 @@ ATTENTION : Si vous avez un message d'erreur sur deepcopy quand vous exécuter d
 
 
 
-## Cheat sheet
+## Cheat sheet Drush
 1. cache rebuild : drush cr (--all)
 1. update db : drush updb (-y)
 1. Remove module : drush pm-uninstall
 1. Delete a specific node : drush entity:delete node ```<nid>```
+
+### Flush image style
+1. If you want to flush all images of a specific image style : run `vendor/bin/drush image-flush name_of_the_imagestyle`  
+    ie :  `vendor/bin/drush image-flush landscape_1366x`
+1. if you want to flush all images from all image styles : run `vendor/bin/drush image-flush --all`
 
 # Acquia cloud
 ## Mise à jour Drupal core via acquia cloud
