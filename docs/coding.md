@@ -70,6 +70,7 @@ package: Custom
 ```
 1. You can now create your php file in src/Plugin/Commerce/CheckoutPane/ and name it (example: CustomMessagePane.php):
 ```
+```
 <?php
 
 namespace Drupal\my_checkout_pane\Plugin\Commerce\CheckoutPane;
