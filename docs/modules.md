@@ -7,6 +7,12 @@ Un patch a été créé pour le projet "Consommateurs & Citoyen". Ce patch perme
 
 ## Contrib
 
+### Install a contrib module
+1. Find your module - ie: `https://www.drupal.org/project/search_api_synonym`
+1. Click on version you need at the bottom of the page
+1. Copy the composer command to install the command - ie: `composer require 'drupal/search_api_synonym:^1.2'`
+1. Run this command at the root of the project
+
 ### color field
 1. Installer le module color field (https://www.drupal.org/project/color_field)
 2. Ajouter le champ color au contenu souhaité et le configurer dans la section "gérer l'affichage du formulaire"
