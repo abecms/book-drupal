@@ -8,8 +8,11 @@ Un patch a été créé pour le projet "Consommateurs & Citoyen". Ce patch perme
 ## Contrib
 
 ### Install a contrib module
+
+**Never download a zip file or a tar.gz file to install a module**
+
 1. Find your module - ie: `https://www.drupal.org/project/search_api_synonym`
-1. Click on version you need at the bottom of the page
+1. Click on version link you need at the bottom of the page - ie: `8.x-1.2`
 1. Copy the composer command to install the command - ie: `composer require 'drupal/search_api_synonym:^1.2'`
 1. Run this command at the root of the project
 
