@@ -24,7 +24,7 @@ Note: The module is installed but not active.
 
 1. Got to admin of your project - `/admin/modules`
 1. Search you module
-1. Select id and click on install
+1. Select it and click on install
 1. Drupal will activate this module
 
 ### color field
