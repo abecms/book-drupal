@@ -163,13 +163,19 @@ et/ou utiliser
 - N'oubliez pas d'`enregistrer la traduction` en bas de page
 
 ### Traduire tris
-- Dans la vue si il y a des critères de tri: Exemple `Contenu : Écrit le` pour un tri nouveau au plus récent ou inverse 
+- Dans la vue si il y a des critères de tri: Exemple `Contenu : Écrit le` pour un tri nouveau au plus récent ou inverse 
 - Dans la vue cliquez sur `Traduire View`
 - Ajouter une traduction `French` par exemple
 - `Master paramètres d'affichage >` Nom de la vue `Option d'affichage par défaut > Tris > Tri par date (si par date) > Newest to oldest > Étiquette`
 - - `Master paramètres d'affichage > `Nom de la vue `Option d'affichage par défaut > Tris > Tri par date (si par date) > Oldest to newest > Étiquette`
 - Renseignez la traduction `Plus récent au plus ancien`
 - N'oubliez pas d'`enregistrer la traduction` en bas de page
+
+### Traduire formulaire de compte  
+- Chemin : `Configuration > People > Account settings > Manage fields`
+- Edit le field qu'on veut traduire
+- Translate user fields
+- trouver dedans le mot ou la valeur à traduire  
 
 
 ### Trouver la langue de la page 
