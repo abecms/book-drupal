@@ -7,6 +7,26 @@ Un patch a été créé pour le projet "Consommateurs & Citoyen". Ce patch perme
 
 ## Contrib
 
+### Install and activate a contrib module
+
+#### Install
+
+**Never download a zip file or a tar.gz file to install a module**
+
+1. Find your module - ie: `https://www.drupal.org/project/search_api_synonym`
+1. Click on version link you need at the bottom of the page - ie: `8.x-1.2`
+1. Copy the composer command to install the command - ie: `composer require 'drupal/search_api_synonym:^1.2'`
+1. Run this command at the root of the project
+
+Note: The module is installed but not active.
+
+#### Activate
+
+1. Got to admin of your project - `/admin/modules`
+1. Search you module
+1. Select id and click on install
+1. Drupal will activate this module
+
 ### color field
 1. Installer le module color field (https://www.drupal.org/project/color_field)
 2. Ajouter le champ color au contenu souhaité et le configurer dans la section "gérer l'affichage du formulaire"
