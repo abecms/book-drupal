@@ -232,7 +232,7 @@ Pour remplacer, ajouter, supprimer une classe par ex. il suffit juste d'utiliser
 1. Installer les modules Captcha et reCaptcha (https://www.drupal.org/project/recaptcha)
 2. Aller dans configuration/personnes/Captcha et configurer Captcha et reCaptcha : Bien créer un reCaptcha Google avec les bonnes clés et autorisant les bons domaines.
 3. Aller dans le modèle du webform et ajouter un champ de type reCaptcha. Enjoy !
-
+4. Important décocher `Local domain name validation` dans la configuration drupal si il est cocher côtés serveur et inversement 
 ### Datalayer
 #### Bug lors de la suppresion d'un inscrit newsletter (via simplenews)
 attention patch à faire (manuel) sur datalayer.module pour éviter un message d'erreur sur la suppression d'un inscrit newsletter (ligne 331) :
