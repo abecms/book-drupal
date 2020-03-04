@@ -7,6 +7,26 @@ Un patch a été créé pour le projet "Consommateurs & Citoyen". Ce patch perme
 
 ## Contrib
 
+### Install and activate a contrib module
+
+#### Install
+
+**Never download a zip file or a tar.gz file to install a module**
+
+1. Find your module - ie: `https://www.drupal.org/project/search_api_synonym`
+1. Click on version link you need at the bottom of the page - ie: `8.x-1.2`
+1. Copy the composer command to install the command - ie: `composer require 'drupal/search_api_synonym:^1.2'`
+1. Run this command at the root of the project
+
+Note: The module is installed but not active.
+
+#### Activate
+
+1. Got to admin of your project - `/admin/modules`
+1. Search you module
+1. Select it and click on install
+1. Drupal will activate this module
+
 ### color field
 1. Installer le module color field (https://www.drupal.org/project/color_field)
 2. Ajouter le champ color au contenu souhaité et le configurer dans la section "gérer l'affichage du formulaire"
@@ -212,7 +232,7 @@ Pour remplacer, ajouter, supprimer une classe par ex. il suffit juste d'utiliser
 1. Installer les modules Captcha et reCaptcha (https://www.drupal.org/project/recaptcha)
 2. Aller dans configuration/personnes/Captcha et configurer Captcha et reCaptcha : Bien créer un reCaptcha Google avec les bonnes clés et autorisant les bons domaines.
 3. Aller dans le modèle du webform et ajouter un champ de type reCaptcha. Enjoy !
-
+4. Important décocher `Local domain name validation` dans la configuration drupal si il est cocher côtés serveur et inversement 
 ### Datalayer
 #### Bug lors de la suppresion d'un inscrit newsletter (via simplenews)
 attention patch à faire (manuel) sur datalayer.module pour éviter un message d'erreur sur la suppression d'un inscrit newsletter (ligne 331) :

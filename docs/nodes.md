@@ -43,6 +43,29 @@ The url is not an entity field, so you can't access it directly. Also the entity
 {% endif %}
 ```
 
+## Champ de type liste
+To get the value of a list element :
+```
+{{ node.field_bottle_format.value }}
+```
+
+To get the label :
+```
+{% set list_value = node.field_bottle_format.value %}
+{{ node.field_bottle_format.getSetting('allowed_values')[list_value] }}
+```
+
+If the field has multiple values :
+```
+{% set allowed_values = node.filter_list.getSetting('allowed_values') %}
+  {% set list_values = node.filter_list.getValue() %}
+  {% for list_value in list_values %}
+    <div>
+      {{ allowed_values[list_value['value']] }}
+    </div>
+{% endfor %}
+```
+
 ## Champ de type lien
 ### Afficher le titre d'un champ de type lien
 ```
