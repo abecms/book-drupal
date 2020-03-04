@@ -403,3 +403,7 @@ Par défaut la recherche dans un champ de type "Entity reference" se fait sur le
 - Dans Reference type : 
   - REFERENCE METHOD choisir Filter by an entity reference view
   - VIEW USED TO SELECT THE ENTITIES sélectionner la vue préalablement créée
+
+## Liste des urls des nodes
+- Créer une vue format Table
+- Dans champs choisir "Lien vers Content" et cocher "Rendre l'URL en tant que texte"

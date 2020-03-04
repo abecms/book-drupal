@@ -39,7 +39,7 @@ Create a template for the newsletter body simplenews-newsletter-body--[newslette
 
 ### Metatag
 - Installer le module metatag
-- Pour personnaliser un node, il suffit de créer un nouveau champ de type metatag. Automatiquement, il permettra de personnaliser les meta sur chaque node
+- Pour personnaliser un node, il suffit de créer un nouveau champ de type metatag pour ce type de contenu. Automatiquement, il permettra de personnaliser les meta sur chaque node (dans l'édition du node menu metatag à droite)
 - pour placer l'image issue d'un champ du node qui est contenue dans un media : ```[node:field_visuel:entity:field_media_image:entity:url]```
 - pour activer et configurer le partage Facebook et twitter :
   - Activer les modules Metatag: Twitter Cards et Metatag: Open Graph
@@ -289,13 +289,16 @@ De plus, pour un lien, voici comment générer l'url dans twig, qu'elle soit int
 {% endif %}
 ```
 
+> NB : S'il s'agit d'un site settings avec plusieurs champs, il faut que tous les champs soient alimentés pour qu'ils s'affichent en front
+
 ### hierarchical_term_formatter
 https://www.drupal.org/project/hierarchical_term_formatter
 
 Ce module permet d'afficher une taxonomie ainsi que ses parents dans une hiérarchie.
 
 ### taxonomy_menu
-Ce module permet de créer un menu à partir d'une taxonomy
+Ce module permet de créer un menu à partir d'une taxonomy. 
+> NB : Pour pouvoir ordonner les termes en drag and drop à partir de la taxonomie concernée, il faut cocher la case "Use term weight order" dans la configuration de Taxonomy menu
 
 ### Maestro : business process workflow
 1. Install all the Maestro module :
@@ -405,7 +408,7 @@ google.maps.event.addDomListener(window, "load", function() {
 });
 ```
 
-## Shield
+### Shield
 
 - Attention si le module du core HTTP BASIC AUTHENTICATION il rentre en conflit avec shield.
 Solution :
@@ -414,6 +417,16 @@ Solution :
 
 
 Methode pour appliquer le patch [title](https://github.com/abecms/book-drupal8/blob/master/dev.md#patches)
+
+### Commerce
+
+#### Configurer une variation de produit
+- aller sous /admin/commerce/config/product-variation-types
+- ajouter les champs nécessaires (image, ...)
+
+#### Paiement CB
+- Pour conserver les infos CB : Saisir une phrase dans "Alias usage" pour afficher la case à cocher sur la page ingenico
+
 
 ## Custom
 
@@ -526,7 +539,6 @@ Here's my solution using only Graph API Explorer & Access Token Debugger:
 - "Expires" should be "Never"
 
 ### view unpublished
-
 Lorsque des droits restreints sont appliqués sur des types de contenus pour un rôle donné, les contenus unpublished ne sont pas visibles de ce rôle. L'installation du module view_unpublished permet d'appliquer les droits de "voir les contenus non publiés" pour chaque type de contenu (voir "view unpublished" dans admin/people/permissions). 
 Une fois installé, il est nécessaire de recalculer les droits (un message apparaitra en BO).
 
@@ -534,3 +546,14 @@ Une fois installé, il est nécessaire de recalculer les droits (un message appa
 ### Robot
 Afin de définir la valeur du fichier robots.txt installer le module "RobotsTxt". 
 A noter : Il est nécessaire de supprimer (ou renommer) le fichier robots.txt déjà présent pour que le module affiche son propre robots.txt
+
+
+### Views Reference Field
+Ce module permet de référencer une vue dans le champs d'un node. Une fois installé :
+1. Créer la vue 
+1. Créer un nouveau champ dans le contenu concerné
+  - Type de champ = views reference 
+  - Type d'élément à référencer = vue
+  - View display plugins to allow = bloc
+  - Preselect View Options = Sélectionner la vue créer à l'étape 1
+
