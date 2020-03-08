@@ -407,3 +407,10 @@ Par défaut la recherche dans un champ de type "Entity reference" se fait sur le
 ## Liste des urls des nodes
 - Créer une vue format Table
 - Dans champs choisir "Lien vers Content" et cocher "Rendre l'URL en tant que texte"
+
+## Choisir la profondeur d'affichage d'une taxonomie dans une vue
+- Dans AVANCÉ / FILTRES CONTEXTUELS
+- Ajouter le filtre "Possède l'identifiant de terme de taxonomie (avec profondeur)"
+- Puis choisir le niveau de profondeur souhaité (O = tous les niveaux et sous-niveaux enfants)
+- Pour éviter les doublons, dans Paramètres de la requête, cocher Distinct
+
