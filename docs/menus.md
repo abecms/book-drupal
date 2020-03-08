@@ -103,9 +103,13 @@ Pour skinner les link comme on le souhaite :
 
 Keep the comment : This will render the item.link and populate the attributes (including #url). Thanks to this trick, you can skin the links the way you want.
 
-## Liens d'actions sur le contenu affiché en front
-- Dans la structure des blocs admin/structure/block
+## Afficher les liens d'actions en front
+- Aller dans la structure des blocs : admin/structure/block
 - Activer le menu Onglets dans Contenu
+
+### Restreindre la barre de menu à un rôle
+- Sur le menu Onglet, cliquer sur Configurer
+- Dans Visibilité cocher les rôles à autoriser
 
 ## Breadcrumbs
 1. Installer le module easy_breadcrumb => configuration(/admin/config/user-interface/easy-breadcrumb) > paramètres généraux

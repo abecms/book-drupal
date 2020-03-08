@@ -56,8 +56,16 @@ Plutôt que :
 - A l'aide twig tweak :
 ```drupal_token('current-user:uid')```
 
-## Récupérer le rôle du user
-```if 'role' in user.getroles```
+## Connaitre le rôle du user
+```
+{% set roles = user.getroles(TRUE) %}
+{{ dump(roles) }} 
+```
+## tester le rôle du user
+```
+if 'role' in user.getroles()
+```
+
 
 ## Détecter si l'utilisateur est loggé ou non
 ```
