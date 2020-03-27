@@ -411,6 +411,6 @@ Par défaut la recherche dans un champ de type "Entity reference" se fait sur le
 ## Choisir la profondeur d'affichage d'une taxonomie dans une vue
 - Dans AVANCÉ / FILTRES CONTEXTUELS
 - Ajouter le filtre "Possède l'identifiant de terme de taxonomie (avec profondeur)"
-- Puis choisir le niveau de profondeur souhaité (O = tous les niveaux et sous-niveaux enfants)
+- Puis choisir le niveau de profondeur souhaité (O = le niveau lui-même, 1 = lui-même et ses enfants, 2 =  lui-même, ses enfants et ses petits enfants, ...)
 - Pour éviter les doublons, dans Paramètres de la requête, cocher Distinct
 

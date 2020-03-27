@@ -150,3 +150,7 @@ Pour afficher par exemple le champ description du terme. Il faut:
 1. Créer un filtre contextuel sur le nom du terme de taxonomie (cf. explication précédente)
 1. Retourner dans la vue parent (la vue précédente) et créer un header qui affiche une zone de vue globale. Sélectionner la vue de type block précédemment créée, et cocher "Hériter des filtres contextuels"
 ENJOY !
+
+## Importer une taxonomie à partir d'un fichier csv
+- installer le module Term CSV Export/Import
+- aller dans admin/config/content/term-csv-import et coller le contenu du csv à importer dans le champ Input
