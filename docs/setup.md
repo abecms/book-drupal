@@ -96,6 +96,7 @@ chmod u+x /usr/local/bin/composer
 
 ## Eviter les erreurs js
 1. Quand vous installez un nouveau thème ou si vous oubliez de fermer une balise vous pouvez retrouver ce genre d'erreurs :
+
 ```
 Uncaught TypeError: Cannot read property 'permissionsHash' of undefined
 Uncaught TypeError: Cannot set property 'StateModel' of undefined
@@ -109,17 +110,20 @@ Uncaught TypeError: Cannot read property 'currentPathIsAdmin' of undefined
 Uncaught TypeError: Cannot read property 'url' of undefined
 Uncaught TypeError: Cannot read property 'currentQuery' of undefined
 ```
-1. Attention à ne pas laisser une div ouverte dans le body d'une page html.html.twig OU que `<js-bottom-placeholder token="{{ placeholder_token|raw }}">` soit bien situé à la fin du body hors d'un <div>
+
+1. Attention à ne pas laisser une div ouverte dans le body d'une page html.html.twig OU que ```<js-bottom-placeholder token="{{ placeholder_token|raw }}">``` soit bien situé à la fin du body hors d'un ```<div>```
 
 ## Debug
-1. Activer le module kint puis aller dans modules/contrib/devel/kint/config.default.php et changer `$_kintSettings['maxLevels'] = 4;` et lui mettre un niveau 4
+1. Activer le module kint puis aller dans modules/contrib/devel/kint/config.default.php et changer ```$_kintSettings['maxLevels'] = 4;``` et lui mettre un niveau 4
 2. Pour acquia : dans settings.php décommenter :
 ```
 if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
   include $app_root . '/' . $site_path . '/settings.local.php';
 }
 ```
+
 3. Mettre la configuration locale :
+
 ```
 <?php
 
@@ -136,7 +140,9 @@ $settings['cache']['bins']['dynamic_page_cache'] = 'cache.backend.null';
 $settings['rebuild_access'] = TRUE;
 $settings['skip_permissions_hardening'] = TRUE;
 ```
+
 et dans development.services.yml :
+
 ```
 parameters:
   http.response.debug_cacheability_headers: true
