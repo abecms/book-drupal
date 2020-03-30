@@ -189,6 +189,11 @@ Pour chercher la langue dans une vue on va chercher l'url de la page qui nous do
 - Pour un node :
 ``` 
 {{ node.langcode.value  }}
+```
 
-``` 
-    
+### Traduire libellé vue des contenus/content
+Le liste des contenus dans le B.O. est une vue.
+Si vous voulez traduire `title` / `Author` ou l'Etat (`published` / `unpublished`)
+* Il faut changer l'étiquette dans la vue `content` ici : `admin/structure/views/view/content?destination=/admin/structure/views`
+* Dans les champs vous avez Contenu : Title(Title) / User : Nom (Author) / Contenu : Published (état)
+* Cliquez sur ces champs et changez les étiquettes
