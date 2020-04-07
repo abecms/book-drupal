@@ -542,9 +542,7 @@ Il faut configurer le header ```X-Frame-Options:```
 
 # Envoyer un mail html
 config Swiftmailer dans `admin/config/swiftmailer/messages` cocher `HTML`
-ajouter dans un module - par exemple - customization
-
-## en haut du fichier
+ajouter dans un module custom - par exemple - `customization`
 
 ```php
 use Drupal\component\render\FormattableMarkup;
