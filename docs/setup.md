@@ -157,6 +157,50 @@ services:
 
 Cela vous pemrettra d'afficher les suggestions dans le code source de vos pages Drupal.
 
+## Utiliser une librairie de css/js spécifique à une page
+1. Dans le fichier mymodule.libraires.yml il faut ajouter un styling (exemple => mypage-styling) en plus du global-styling :
+```
+ global-styling:
+  version: 1.x
+  css:
+    theme:
+      css/pluginCss.css: {}
+      css/app.css: {}
+      css/nextgen.css: {}
+  js:
+    js/lib/lib.js: {defer: true, async: true}
+    js/app.js: {defer: true, async: true}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
+
+mypage-styling:
+  version: 1.x
+  css:
+    theme:
+      css/components.css: {}
+      css/dalet-virtual-show.css: {}
+      css/normalize.css: {}
+  js:
+    js/dalet-virtual-show: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
+
+```
+1. Dans le fichier mymodule.theme au niveau du hook preprocess de la page, vérifier le node/type/nom/etc... de la page pour utiliser la librairie(library) souhaitée :
+```
+function mymodule_preprocess_html(array &$variables) {
+  $path_args = explode('/', Url::fromRoute('<current>')->getInternalPath());
+
+  if($node = Node::load($path_args[1]) && $node->getType() == 'mypage') {
+    $variables['#attached']['library'][] = 'dalet/mypage-styling';
+  }
+}
+```
+
 # BDD
 ## chargement de la base de données
 mysql -u #user# -p moet < #databasefile#.sql

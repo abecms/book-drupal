@@ -8,7 +8,7 @@
 module.exports = {
   docs: {
     Setup: ['introduction', 'setup'],
-    Configuration: ['configuration', 'multilingue', 'tests', 'webforms', 'config-nodes', 'seo'],
+    Configuration: ['configuration', 'multilingue', 'tests', 'webforms', 'config-blocks', 'config-nodes', 'seo'],
     Dynamisation: ['nodes', 'paragraphs', 'views', 'search', 'forms', 'taxonomies', 'tokens', 'images', 'users', 'comments', 'newsletters', 'menus', 'ckeditor', 'modules'],
     'Dev specific': ['dev'],
   },
