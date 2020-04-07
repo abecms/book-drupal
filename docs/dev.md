@@ -539,3 +539,42 @@ Il faut configurer le header ```X-Frame-Options:```
       /* ici la chaine de caractere est couper au caractere 20 */
 
       ```
+
+# Envoyer un mail html
+config Swiftmailer dans `admin/config/swiftmailer/messages` cocher `HTML`
+ajouter dans un module - par exemple - customization
+
+## en haut du fichier
+
+```php
+use Drupal\component\render\FormattableMarkup;
+...
+
+/**
+ * Implements hook_mail_alter().
+ */
+function MYMODULE_mail_alter(&$message) {
+  switch ($message['key']) {
+    case 'page_mail':
+    case 'page_copy':
+    case 'cancel_confirm':
+    case 'password_reset':
+    case 'register_admin_created':
+    case 'register_no_approval_required':
+    case 'register_pending_approval':
+    case 'register_pending_approval_admin':
+    case 'status_activated':
+    case 'status_blocked':
+    case 'status_canceled':
+      $message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed; delsp=yes';
+      foreach ($message['body'] as $key => $body) {
+        $message['body'][$key] = new FormattableMarkup($body, []);
+      }
+      break;
+
+  }
+}
+```
+
+
+
