@@ -541,8 +541,12 @@ Il faut configurer le header ```X-Frame-Options:```
       ```
 
 # Envoyer un mail html
+
+Source : `https://www.flocondetoile.fr/blog/send-transactional-emails-related-user-account-html-format-drupal-8`
+
 config Swiftmailer dans `admin/config/swiftmailer/messages` cocher `HTML`
 ajouter dans un module custom - par exemple - `customization`
+
 
 ```php
 use Drupal\component\render\FormattableMarkup;
