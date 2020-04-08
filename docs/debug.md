@@ -45,7 +45,7 @@ Envoi du mail depuis le B.O.
 le resultat affiche dans le navigateur : 
 
 ```
-MIME-Version: 1.0 Content-Type: text/html; charset=UTF-8; format=flowed Content-Transfer-Encoding: 8Bit X-Mailer: Drupal Sender: emmanuel.gonzalez@livingcolor.fr From: My Hennessy Reply-to: My Hennessy pooooooooooo-femmanuel.gonzalez@livingcolor.frtata
+MIME-Version: 1.0 Content-Type: text/html; charset=UTF-8; format=flowed Content-Transfer-Encoding: 8Bit X-Mailer: Drupal Sender: adresseduclient@adresseduclient.fr From: My Hennessy Reply-to: My Hennessy pooooooooooo-fadresseduclient@adresseduclient.frtata
 ```
 
 Dans notre cas c'était le sender qui posait soucis.  
