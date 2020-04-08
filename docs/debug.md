@@ -48,4 +48,6 @@ le resultat affiche dans le navigateur :
 MIME-Version: 1.0 Content-Type: text/html; charset=UTF-8; format=flowed Content-Transfer-Encoding: 8Bit X-Mailer: Drupal Sender: emmanuel.gonzalez@livingcolor.fr From: My Hennessy Reply-to: My Hennessy pooooooooooo-femmanuel.gonzalez@livingcolor.frtata
 ```
 
-
+Dans notre cas c'était le sender qui posait soucis.  
+Le sender par défaut est celui qui est dans `admin/config/system/site-information` - `Adresse de courriel`.  
+Nous n'étions pas autorisé à envoyer des mails avec le sender. Nous vons donc rentré notre adresse email comme sender.
