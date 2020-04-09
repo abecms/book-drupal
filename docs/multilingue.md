@@ -197,3 +197,13 @@ Si vous voulez traduire `title` / `Author` ou l'Etat (`published` / `unpublished
 * Il faut changer l'étiquette dans la vue `content` ici : `admin/structure/views/view/content?destination=/admin/structure/views`
 * Dans les champs vous avez Contenu : Title(Title) / User : Nom (Author) / Contenu : Published (état)
 * Cliquez sur ces champs et changez les étiquettes
+
+
+### Traduire les dates.
+
+Vous pouvez traduire les mois, les jours.
+Les mois ou jours commencent tous par une majuscule. exemple `April` ou `Monday`
+
+Pour traduire les dates il faut :
+* Aller dans `admin/config/regional/translate`
+* Saisir les mois en Anglais par exemple `April` et le traduire dans la langue souhaitée.
