@@ -21,7 +21,7 @@ module.exports = {
         src: 'img/logo.png',
       },
       links: [
-        {to: 'docs/introduction', label: 'Docs', position: 'left'},
+        {to: 'docs/setup/introduction', label: 'Docs', position: 'left'},
         {
           href: 'https://github.com/facebook/docusaurus',
           label: 'GitHub',
@@ -37,7 +37,7 @@ module.exports = {
           items: [
             {
               label: 'Docs',
-              to: 'docs/introduction',
+              to: 'docs/setup/introduction',
             },
           ],
         },
