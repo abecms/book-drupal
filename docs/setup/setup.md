@@ -158,6 +158,9 @@ Ensuite, se rendre sur la configuration du node, dans la configuration du champs
 
 ATTENTION, un patch est nécessaire (version D8 actuelle 8.7.* : "entity reference display on admin autocomplete": "patches/2174633-351.patch"
 
+## Redirect unauthorized users to a specific page
+In the admin : `http://mhisrmm.dev.dd:8083/admin/config/system/site-information` Put the URL you want in the error pages section (Default 403 (access denied page))
+
 # Développer
 
 ## Eviter les erreurs js
