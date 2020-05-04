@@ -540,11 +540,12 @@ Il faut configurer le header ```X-Frame-Options:```
 
       ```
 
-# Envoyer un mail html
+# Envoyer un mail du compte client en html
 
 Source : `https://www.flocondetoile.fr/blog/send-transactional-emails-related-user-account-html-format-drupal-8`
 
-* Configurer le type de mail envoyer par Swiftmailer dans `admin/config/swiftmailer/messages` cocher `HTML`
+* Configurer le type de mail envoyé par Swiftmailer dans `admin/config/swiftmailer/messages` cocher `HTML`
+* Configurer les mails dans l'admin (configuration/personnes/paramètres de compte, tout en bas)
 * ajouter dans un module custom - par exemple - `customization`
 
 ```php
@@ -575,6 +576,89 @@ function MYMODULE_mail_alter(&$message) {
 
   }
 }
+```
+
+# Envoyer un mail en html depuis votre module
+Ce qui peut sembler complexe dans Drupal - envoyer un mail en HTML depuis votre module, est en fait très simple et se déroule en 6 étapes :
+
+1. Installer swiftmailer
+2. `/admin/config/system/mailsystem` configurer mailsystem:
+```
+Set 'Default formatter' and 'Default sender' to Swiftmailer
+Set 'Theme to render the emails' to your custom theme
+```
+3. `/admin/config/swiftmailer/messages` configurer swiftmailer:
+```
+  Set 'Message format' to html
+  Disable 'Respect provided e-mail format.'
+```
+4. Dans votre fonction de votre module qui doit envoyer le mail
+```
+$params = [];
+$params['options']['username'] = $user->getUsername();
+Drupal::service('plugin.manager.mail')->mail(
+  'customization',
+  'invitation_validation',
+  $email,
+  \Drupal::config('system.site')->get('langcode'),
+  $params,
+  'no-reply@test.com',
+  true
+);
+```
+`$mailManager->mail($module, $key, $to, $langcode, $params, $reply, $send);`
+- $module qui servira ultérieurement à la sélection du Plugin responsable de l'envoi du mail.
+- $key qui va permettre d'identifier ce mail.
+- $to qui est le destinataire du mail
+- $langcode correspond à la langue dans lequel le mail doit être envoyé.
+- Le tableau $params contient les données qui seront utilisées dans le twig et pour formater le mail (subject, ...)
+- $reply est l'adresse mail de réponse
+- $send demande l'envoi du mail.
+5. dans `MON_MODULE.module`, on crée la définition de ce mail dans le hook `MON_MODULE_mail`:
+```
+function MON_MODULE_mail($key, &$message, $params)
+{
+  switch ($key) {
+    case 'invitation_validation':
+      $message['from'] = \Drupal::config('system.site')->get('mail');
+      $message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed; delsp=yes';
+      $message['subject'] = 'Your request has been accepted';
+      $message['options'] = $params['options'];
+
+      return $message;
+      break;
+  }
+}
+```
+6. Il reste à créer le twig du mail dans votre thème. Le nom de votre template devra s'appeler `swiftmailer--MON_MODULE--MA_CLEF_MAIL.html.twig`
+dans notre exemple, si j'ai créé le hook `customization_mail` dans le module `customization`, mon template de mail devra s'appeler : `swiftmailer--customization--invitation-validation.html.twig`
+```
+<!doctype html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title></title>
+</head>
+
+<body>
+<table>
+  <tr>
+    <td>
+      <div class="content">
+        <table>
+          <tr>
+            <td>
+              {{ message.options.username }}, you may now access the <a href="www.livingcolor.fr">Livingcolor website</a>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
+</body>
+</html>
 ```
 
 # COOKIE
@@ -620,4 +704,28 @@ Il faudra utiliser  le template twig |split
 ```
 {% set cookie = get_cookie('age-gate')|split('"')  %}
 
+```
+
+# Rediriger un utilisateur au login en fonction de son profil
+
+ATTENTION : NE JAMAIS UTILISER `REDIRECT` DANS LE HOOK _user_login (cela ne fonctionne pas correctement)
+
+```
+function MYMODULE_user_login($account)
+{
+  $user = \Drupal::currentUser();
+  $route_name = \Drupal::routeMatch()->getRouteName();
+  if (
+    $route_name !== 'user.reset.login' &&
+    !in_array('utilisateur_invite', $user->getRoles()) &&
+    !in_array('administrateur_region', $user->getRoles()) &&
+    !in_array('administrator', $user->getRoles())
+  ) {
+    $current_request = \Drupal::service('request_stack')->getCurrentRequest();
+    $current_request->query->set(
+      'destination',
+      '/form/invite'
+    );
+  }
+}
 ```

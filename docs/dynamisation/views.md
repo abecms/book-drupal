@@ -393,14 +393,14 @@ function h1765_preprocess_views_view_field(&$variables, $hook) {
 
 ## Changer la portée de la recherche dans un champ de type Entity reference
 Par défaut la recherche dans un champ de type "Entity reference" se fait sur le titre du contenu. Pour pouvoir chercher sur un autre champs du node :
-1. Créer une vue qui porte sur le contenu concerné, 
+1. Créer une vue qui porte sur le contenu concerné,
 1. Cliquer sur Ajouter et choisir Entity reference
 1. Dans FORMAT :
 - Format : Liste Entity Reference | Dans Paramètres choisir les champs sur lesquels va porter la recherche (ex: identifiant, titre)
 - Afficher : Champs Entity Reference en ligne | Dans Paramètres choisir si nécessaire les champs qui seront affichés dans le champ de recherche
 1. Maintenant il fait appliquer cette vue sur un champ de type entity reference
 - Ajouter un champ de type entity reference sur le type de contenu concerné
-- Dans Reference type : 
+- Dans Reference type :
   - REFERENCE METHOD choisir Filter by an entity reference view
   - VIEW USED TO SELECT THE ENTITIES sélectionner la vue préalablement créée
 
@@ -414,3 +414,12 @@ Par défaut la recherche dans un champ de type "Entity reference" se fait sur le
 - Puis choisir le niveau de profondeur souhaité (O = le niveau lui-même, 1 = lui-même et ses enfants, 2 =  lui-même, ses enfants et ses petits enfants, ...)
 - Pour éviter les doublons, dans Paramètres de la requête, cocher Distinct
 
+## Permettre d'ordonner à la main les éléments d'une vue
+(https://kgaut.net/blog/2016/module-drupal-8-weight-pour-trier-les-contenus.html)
+- Installer le module weight : https://www.drupal.org/project/weight
+- Ajouter un champ de ce type au type de contenu qu'on utilisera dans la vue (ici nous avons appelé ce champ `position`)
+- Dans la vue, Dans les champs, sélectionner : `Content: Position Selector (Position Selector (field_position))`
+- Dans sort criteria sélectionner : `Content: Position (asc)`
+- Dans Page Settings choisir une URL pour y accéder depuis le menu d'admin (`Path:/admin/champagne-sorting`) par exemple et ou cette vue apparait dans le menu (par exemple `Menu:Normal: Champagne sortin...`) et la limiter au rôle d'admin (`Access:Role | Administrateur`)
+
+Le tour est joué ! Cette manip permet de proposer du glisser/déposer sur la vue dans l'admin, ce qui va modifier le poids des nodes et les ordonner en fonction de ces poids.
