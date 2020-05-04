@@ -27,6 +27,24 @@ Note: The module is installed but not active.
 1. Select it and click on install
 1. Drupal will activate this module
 
+### Ajax loader
+Pour remplacer le loader ajax drupal par un custom loader il faut :
+1. le module Ajax Loader - `https://www.drupal.org/project/ajax_loader`
+1. On copie le repertoire `modules/contrib/src/Plugin/ajax_loader` dans module le module customization `public/sites/default/modules/custom/customization/src/Plugin/ajax_loader`
+1. Les custom Loader commencent par `Trobbernomduloader.php`
+1. Ne garder qu'un seul fichier php et le renommer du nom du loader voulu `Trobbernomduclient.php` et   
+remplacer dans le fichier la class et la fonction pour ne pas provoquer de conflit avec le nom voulu.
+1. Dans la fonction `setMarkup` remplacer le `return` par votre loader. ie: 
+```php
+protected function setMarkup() {
+    return '<div class="preloader-drupal"><div></div><div></div><div></div></div>';
+  }
+```
+1. Vider la cache depuis le B.O.
+1. dans l'admin `admin/config/user-interface/ajax-loader` Choisissez votre loader qui apparait dans la liste déroulante.
+
+
+
 ### color field
 1. Installer le module color field (https://www.drupal.org/project/color_field)
 2. Ajouter le champ color au contenu souhaité et le configurer dans la section "gérer l'affichage du formulaire"

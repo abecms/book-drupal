@@ -77,6 +77,9 @@
 - docroot/modules/contrib/simplenews
 - docroot/modules/contrib/swiftmailer
 
+### CUSTOM LOADER
+- docroot/modules/contrib/ajax_loader
+
 ## PROBLEME COMPOSER
 
 Si vous rencontrer le message suivant à l'installation via composer :
