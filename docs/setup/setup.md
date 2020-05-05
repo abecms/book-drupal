@@ -194,6 +194,15 @@ if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
 }
 ```
 
+Si vous avez le message d'erreur :
+MySQL import failed.
+STDERR:ERROR 1118 (42000) at line 389: The size of BLOB/TEXT data inserted in one transaction is greater than 10% of redo log size. Increase the redo log size using innodb_log_file_size.
+
+Il faut aller dans `/Applications/DevDesktop/mysql` et éditer my.cnf en mettant une valeur supérieure à `innodb_log_file_size` :
+```
+innodb_log_file_size=128M
+```
+
 3. Mettre la configuration locale :
 
 ```
@@ -429,8 +438,12 @@ git stash drop    # forget the stashed changes. Alternatively: git stash pop
 Pour exécuter Drush depuis vendor/bin/drush, il faut configurer le fichier .env à la racine du projet avec les paramètres de BDD. Notre starter Drupal contient un .env.example comme modèle
 
 ## Debug drush
+### remove a field storage from config if you encounter an error
 1. drush sqlq "DELETE FROM cache_config"
 2. drush sqlq "DELETE FROM config WHERE name = 'field.storage.node.field_body' OR data LIKE '%field.storage.node.field_body%'"
+
+### Remove a improperly removed module from the database
+`drush cdel core.extension module.MY_MODULE `
 
 ## on AcquiaDev
 ATTENTION : Si vous avez un message d'erreur sur deepcopy quand vous exécuter drush, il faut éditer la commande drush de devdesktop ``` /Applications/DevDesktop/tools/drush ``` en lui mettant comme version de PHP minimale :

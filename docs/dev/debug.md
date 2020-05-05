@@ -24,7 +24,7 @@ Si la methode utlisée est php_mail. php_mail est la méthose native utilisée p
       );
 ```
 
-Vous pouvez print_r ou echo les `$mail_headers` ou `$additional_headers` avec le code ci-dessous: 
+Vous pouvez print_r ou echo les `$mail_headers` ou `$additional_headers` avec le code ci-dessous:
 
 ```
       $mail_result = @mail(
@@ -35,19 +35,19 @@ Vous pouvez print_r ou echo les `$mail_headers` ou `$additional_headers` avec le
         $additional_headers
       );
       print_r($mail_headers);
-      echo 'pooooooooooo';
+      echo '\***/';
       print_r($additional_headers);
-      die('tata');
+      die();
     }
 ```
-Envoi du mail depuis le B.O. 
+Envoi du mail depuis le B.O.
 
-le resultat affiche dans le navigateur : 
+le resultat affiche dans le navigateur :
 
 ```
-MIME-Version: 1.0 Content-Type: text/html; charset=UTF-8; format=flowed Content-Transfer-Encoding: 8Bit X-Mailer: Drupal Sender: adresseduclient@adresseduclient.fr From: My Hennessy Reply-to: My Hennessy pooooooooooo-fadresseduclient@adresseduclient.frtata
+MIME-Version: 1.0 Content-Type: text/html; charset=UTF-8; format=flowed Content-Transfer-Encoding: 8Bit X-Mailer: Drupal Sender: adresseduclient@adresseduclient.fr From: My Hennessy Reply-to: My Hennessy \***/-fadresseduclient@adresseduclient.fr
 ```
 
-Dans notre cas c'était le sender qui posait soucis.  
-Le sender par défaut est celui qui est dans `admin/config/system/site-information` - `Adresse de courriel`.  
+Dans notre cas c'était le sender qui posait souci.
+Le sender par défaut est celui qui est dans `admin/config/system/site-information` - `Adresse de courriel`.
 Nous n'étions pas autorisé à envoyer des mails avec le sender. Nous vons donc rentré notre adresse email comme sender.
