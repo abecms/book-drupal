@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="generator" content="Docusaurus">
+<meta name="generator" content="Docusaurus v2.0.0-alpha.50">
 
 
 <title data-react-helmet="true">dev | Drupal Stickers Book</title>
@@ -14,6 +14,25 @@
 
 
 <link rel="stylesheet" href="/styles.3b60f707.css">
+
+
+<link rel="preload" href="/styles.3ddcc023.js" as="script">
+
+<link rel="preload" href="/runtime~main.99fe9195.js" as="script">
+
+<link rel="preload" href="/main.9cf79533.js" as="script">
+
+<link rel="preload" href="/1.75375973.js" as="script">
+
+<link rel="preload" href="/2.48cc12ae.js" as="script">
+
+<link rel="preload" href="/37.de619ef9.js" as="script">
+
+<link rel="preload" href="/20ac7829.bb5b7f22.js" as="script">
+
+<link rel="preload" href="/17896441.71794945.js" as="script">
+
+<link rel="preload" href="/8037c9c6.6d69140a.js" as="script">
 
 </head>
 <body>
@@ -69,23 +88,23 @@ Il faudra utiliser  le template twig |split</p><div class="mdxCodeBlock_iHAB"><d
 </span></div></div></div></div></div><h1><a aria-hidden="true" tabindex="-1" class="anchor enhancedAnchor_ZqCz" id="rediriger-un-utilisateur-au-login-en-fonction-de-son-profil"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#rediriger-un-utilisateur-au-login-en-fonction-de-son-profil" title="Direct link to heading">#</a>Rediriger un utilisateur au login en fonction de son profil</h1><p>ATTENTION : NE JAMAIS UTILISER <code>REDIRECT</code> DANS LE HOOK _user_login (cela ne fonctionne pas correctement)</p><div class="mdxCodeBlock_iHAB"><div class="codeBlockContent_32p_"><button type="button" aria-label="Copy code to clipboard" class="copyButton_1BYj">Copy</button><div tabindex="0" class="prism-code language-undefined codeBlock_19pQ"><div class="codeBlockLines_2n9r" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain">function MYMODULE_user_login($account)</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">{</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">  $user = \Drupal::currentUser();</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">  $route_name = \Drupal::routeMatch()-&gt;getRouteName();</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">  if (</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">    $route_name !== &#x27;user.reset.login&#x27; &amp;&amp;</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">    !in_array(&#x27;utilisateur_invite&#x27;, $user-&gt;getRoles()) &amp;&amp;</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">    !in_array(&#x27;administrateur_region&#x27;, $user-&gt;getRoles()) &amp;&amp;</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">    !in_array(&#x27;administrator&#x27;, $user-&gt;getRoles())</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">  ) {</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">    $current_request = \Drupal::service(&#x27;request_stack&#x27;)-&gt;getCurrentRequest();</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">    $current_request-&gt;query-&gt;set(</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">      &#x27;destination&#x27;,</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">      &#x27;/form/invite&#x27;</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">    );</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">  }</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">}</span></div></div></div></div></div></div></article><div class="margin-vert--lg"><nav class="pagination-nav"><div class="pagination-nav__item"><a class="pagination-nav__link" href="/docs/dynamisation/modules"><div class="pagination-nav__link--sublabel">Previous</div><div class="pagination-nav__link--label">« modules</div></a></div><div class="pagination-nav__item pagination-nav__item--next"><a class="pagination-nav__link" href="/docs/dev/debug"><div class="pagination-nav__link--sublabel">Next</div><div class="pagination-nav__link--label">debug »</div></a></div></nav></div></div></div><div class="col col--3"><div class="tableOfContents_TbNY"><ul class="contents contents__left-border"><li><a href="#text-list-values-of-a-field" class="contents__link">text list values of a field</a></li><li><a href="#use-a-template-in-a-field" class="contents__link">Use a template in a field</a></li><li><a href="#create-a-checkout-pane" class="contents__link">Create a checkout pane</a><ul><li><a href="#what-is-a-checkout-pane-" class="contents__link">What is a checkout pane ?</a></li><li><a href="#create-custom-pane-module" class="contents__link">Create custom pane module</a></li><li><a href="#create-a-field-in-a-form-a-pane-form" class="contents__link">Create a field in a form/ a pane form</a></li></ul></li><li><a href="#créer-un-web-service" class="contents__link">Créer un web service</a></li><li><a href="#ajouter-des-paramètres-de-configuration-à-votre-module" class="contents__link">Ajouter des paramètres de configuration à votre module</a></li><li><a href="#empêcher-la-mise-en-cache-dun-node-ou-type-de-node-spécifique" class="contents__link">Empêcher la mise en cache d&#39;un node ou type de node spécifique</a></li><li><a href="#modifier-la-valeur-dun-paragraphe-par-appel-webservice" class="contents__link">Modifier la valeur d&#39;un paragraphe par appel webservice</a></li><li><a href="#créer-une-extension-twig" class="contents__link">Créer une extension Twig</a></li><li><a href="#créer-un-formulaire-avec-un-theme-spécifique" class="contents__link">Créer un formulaire avec un theme spécifique</a></li><li><a href="#créer-un-module-de-block-recevant-le-node-sur-lequel-il-apparait-en-contexte" class="contents__link">Créer un module de block recevant le node sur lequel il apparait en contexte</a></li><li><a href="#mettre-en-cache-le-resultat-dun-appel-externe" class="contents__link">Mettre en cache le resultat d&#39;un appel externe</a></li><li><a href="#obtenir-le-chemin-du-theme-actif" class="contents__link">obtenir le chemin du theme actif</a></li><li><a href="#créer-du-html-depuis-php" class="contents__link">créer du html depuis php</a></li><li><a href="#envoyer-un-mail" class="contents__link">Envoyer un mail</a></li><li><a href="#source-de-liframe-example" class="contents__link">source de l&#39;iframe (example)</a></li><li><a href="#allow-style-tag-in-ckeditor" class="contents__link">Allow style tag in ckeditor</a></li><li><a href="#static" class="contents__link">Static</a></li><li><a href="#config-nginx" class="contents__link">Config nginx</a></li><li><a href="#twig" class="contents__link">Twig</a></li></ul></div></div></div></div></div></main></div></div><footer class="footer footer--dark"><div class="container"><div class="row footer__links"><div class="col footer__col"><h4 class="footer__title">Docs</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" href="/docs/setup/introduction">Docs</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Community</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" target="_blank" rel="noopener noreferrer" href="https://abecms.slack.com">Slack</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Website</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" target="_blank" rel="noopener noreferrer" href="https://livingcolor.fr">Website</a></li></ul></div></div><div class="text--center"><div class="margin-bottom--sm"><a href="https://opensource.facebook.com/" target="_blank" rel="noopener noreferrer" class="footerLogoLink_1Wg7"><img class="footer__logo" alt="Facebook Open Source Logo" src="https://docusaurus.io/img/oss_logo.png"></a></div><div>Copyright © 2020 Abe SAS. Built with Docusaurus.</div></div></div></footer>
 </div>
 
-<script src="/styles.3c3a668b.js"></script>
+<script src="/styles.3ddcc023.js"></script>
 
-<script src="/runtime~main.f3bb7d0d.js"></script>
+<script src="/runtime~main.99fe9195.js"></script>
 
-<script src="/main.5a62b7d2.js"></script>
+<script src="/main.9cf79533.js"></script>
 
-<script src="/1.4841b003.js"></script>
+<script src="/1.75375973.js"></script>
 
-<script src="/2.8158efa6.js"></script>
+<script src="/2.48cc12ae.js"></script>
 
-<script src="/37.7d1b0bfb.js"></script>
+<script src="/37.de619ef9.js"></script>
 
-<script src="/20ac7829.a4bf8ffe.js"></script>
+<script src="/20ac7829.bb5b7f22.js"></script>
 
-<script src="/17896441.8231db86.js"></script>
+<script src="/17896441.71794945.js"></script>
 
-<script src="/8037c9c6.70f491c1.js"></script>
+<script src="/8037c9c6.6d69140a.js"></script>
 
 
 </body>

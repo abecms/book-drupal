@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="generator" content="Docusaurus">
+<meta name="generator" content="Docusaurus v2.0.0-alpha.50">
 
 
 <title data-react-helmet="true">nodes | Drupal Stickers Book</title>
@@ -14,6 +14,25 @@
 
 
 <link rel="stylesheet" href="/styles.3b60f707.css">
+
+
+<link rel="preload" href="/styles.3ddcc023.js" as="script">
+
+<link rel="preload" href="/runtime~main.99fe9195.js" as="script">
+
+<link rel="preload" href="/main.9cf79533.js" as="script">
+
+<link rel="preload" href="/1.75375973.js" as="script">
+
+<link rel="preload" href="/2.48cc12ae.js" as="script">
+
+<link rel="preload" href="/37.de619ef9.js" as="script">
+
+<link rel="preload" href="/20ac7829.bb5b7f22.js" as="script">
+
+<link rel="preload" href="/17896441.71794945.js" as="script">
+
+<link rel="preload" href="/8c5cea80.2bfe197e.js" as="script">
 
 </head>
 <body>
@@ -31,23 +50,23 @@ Pour exécuter ces filtres sur un texte avant de le sauvegarder lors d&#x27;un i
 </span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">  if (!empty($_GET[&#x27;video&#x27;])) {</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">    $media = Media::load($_GET[&#x27;video&#x27;]);</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">    //Kint::dump($media-&gt;get(&#x27;field_title&#x27;)[0]-&gt;getValue()[&#x27;value&#x27;]);</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">    if ($media) {</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">        $vars[&#x27;get&#x27;][&#x27;video&#x27;][&#x27;id&#x27;] = $_GET[&#x27;video&#x27;];</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">        $vars[&#x27;get&#x27;][&#x27;video&#x27;][&#x27;title&#x27;] = $media-&gt;get(&#x27;field_title&#x27;)[0]-&gt;getValue()[&#x27;value&#x27;];</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">        $vars[&#x27;get&#x27;][&#x27;video&#x27;][&#x27;image&#x27;] = file_create_url($media-&gt;get(&#x27;field_media_image&#x27;)-&gt;entity-&gt;getFileUri());</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">        $vars[&#x27;get&#x27;][&#x27;video&#x27;][&#x27;description&#x27;] = strip_tags($media-&gt;get(&#x27;field_description&#x27;)[0]-&gt;getValue()[&#x27;value&#x27;]);</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">        $vars[&#x27;get&#x27;][&#x27;video&#x27;][&#x27;url&#x27;] = file_create_url($media-&gt;get(&#x27;field_media_video_file&#x27;)-&gt;entity-&gt;getFileUri());</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">    }</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">  }</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">}</span></div></div></div></div></div><ol><li>dans le twig =&gt; <code>{{ gaKey }}</code></li></ol><h1><a aria-hidden="true" tabindex="-1" class="anchor enhancedAnchor_ZqCz" id="preview-type-de-contenu"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#preview-type-de-contenu" title="Direct link to heading">#</a>Preview type de contenu</h1><ol><li>cocher &quot;facultatif&quot; dans la section &quot;Apercu avant soumission&quot; dans : structure &gt; type de contenu &gt; (exp: &#x27;article&#x27;) &gt; modifier</li></ol></div></article><div class="margin-vert--lg"><nav class="pagination-nav"><div class="pagination-nav__item"><a class="pagination-nav__link" href="/docs/config/seo"><div class="pagination-nav__link--sublabel">Previous</div><div class="pagination-nav__link--label">« seo</div></a></div><div class="pagination-nav__item pagination-nav__item--next"><a class="pagination-nav__link" href="/docs/dynamisation/paragraphs"><div class="pagination-nav__link--sublabel">Next</div><div class="pagination-nav__link--label">paragraphs »</div></a></div></nav></div></div></div><div class="col col--3"><div class="tableOfContents_TbNY"><ul class="contents contents__left-border"><li><a href="#partage-dun-article" class="contents__link">Partage d&#39;un article</a><ul><li><a href="#share-sur-facebook" class="contents__link">Share sur Facebook</a></li><li><a href="#share-sur-twitter" class="contents__link">Share sur Twitter</a></li><li><a href="#share-sur-linkedin" class="contents__link">Share sur Linkedin</a></li><li><a href="#share-sur-whatsapp" class="contents__link">Share sur Whatsapp</a></li><li><a href="#share-sur-messenger-à-tester-uniquement-sur-mobile" class="contents__link">Share sur Messenger (à tester uniquement sur mobile)</a></li></ul></li><li><a href="#traduire-les-textes-dun-thème" class="contents__link">Traduire les textes d&#39;un thème</a></li><li><a href="#obtenir-lurl--uri-dun-reference-field-en-twig" class="contents__link">Obtenir l&#39;URL / URI d&#39;un reference field en twig</a></li><li><a href="#champ-de-type-liste" class="contents__link">Champ de type liste</a></li><li><a href="#champ-de-type-lien" class="contents__link">Champ de type lien</a><ul><li><a href="#afficher-le-titre-dun-champ-de-type-lien" class="contents__link">Afficher le titre d&#39;un champ de type lien</a></li><li><a href="#tester-si-un-champ-de-type-lien-est-externe" class="contents__link">Tester si un champ de type lien est externe</a></li><li><a href="#mettre-lurl-dun-champ-de-type-lien-link" class="contents__link">Mettre l&#39;url d&#39;un champ de type lien (link)</a></li></ul></li><li><a href="#formater-une-date-dans-twig" class="contents__link">Formater une date dans Twig</a></li><li><a href="#récupérer-et-formater-la-date-de-création-et-modification-dun-node" class="contents__link">Récupérer et formater la date de création et modification d&#39;un node</a></li><li><a href="#afficher-lurl-dun-node" class="contents__link">Afficher l&#39;url d&#39;un node</a></li><li><a href="#truncate-un-champ-pour-afficher-un-résumé" class="contents__link">Truncate un champ pour afficher un résumé</a></li><li><a href="#afficher-lurl-dune-vue" class="contents__link">Afficher l&#39;url d&#39;une vue</a></li><li><a href="#afficher-un-node-suivant-un-display-mode" class="contents__link">Afficher un node suivant un display mode</a></li><li><a href="#ajouter-une-classe-sur-un-field" class="contents__link">Ajouter une classe sur un field</a></li><li><a href="#retrouver-le-nombre-déléments-dun-field" class="contents__link">Retrouver le nombre d&#39;éléments d&#39;un field</a></li><li><a href="#import-de-texte-dans-un-ckeditor" class="contents__link">Import de texte dans un ckeditor</a></li><li><a href="#lister-les-entités-référencées" class="contents__link">Lister les entités référencées</a></li><li><a href="#créer-un-node-par-programmation" class="contents__link">Créer un node par programmation</a></li><li><a href="#récupérer-lid-de-lauteur-dun-node" class="contents__link">Récupérer l&#39;ID de l&#39;auteur d&#39;un node</a></li><li><a href="#appeler-un-node-ou-une-autre-url-en-popin" class="contents__link">Appeler un node (ou une autre URL) en popin</a></li></ul></div></div></div></div></div></main></div></div><footer class="footer footer--dark"><div class="container"><div class="row footer__links"><div class="col footer__col"><h4 class="footer__title">Docs</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" href="/docs/setup/introduction">Docs</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Community</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" target="_blank" rel="noopener noreferrer" href="https://abecms.slack.com">Slack</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Website</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" target="_blank" rel="noopener noreferrer" href="https://livingcolor.fr">Website</a></li></ul></div></div><div class="text--center"><div class="margin-bottom--sm"><a href="https://opensource.facebook.com/" target="_blank" rel="noopener noreferrer" class="footerLogoLink_1Wg7"><img class="footer__logo" alt="Facebook Open Source Logo" src="https://docusaurus.io/img/oss_logo.png"></a></div><div>Copyright © 2020 Abe SAS. Built with Docusaurus.</div></div></div></footer>
 </div>
 
-<script src="/styles.3c3a668b.js"></script>
+<script src="/styles.3ddcc023.js"></script>
 
-<script src="/runtime~main.f3bb7d0d.js"></script>
+<script src="/runtime~main.99fe9195.js"></script>
 
-<script src="/main.5a62b7d2.js"></script>
+<script src="/main.9cf79533.js"></script>
 
-<script src="/1.4841b003.js"></script>
+<script src="/1.75375973.js"></script>
 
-<script src="/2.8158efa6.js"></script>
+<script src="/2.48cc12ae.js"></script>
 
-<script src="/37.7d1b0bfb.js"></script>
+<script src="/37.de619ef9.js"></script>
 
-<script src="/20ac7829.a4bf8ffe.js"></script>
+<script src="/20ac7829.bb5b7f22.js"></script>
 
-<script src="/17896441.8231db86.js"></script>
+<script src="/17896441.71794945.js"></script>
 
-<script src="/8c5cea80.f0ad427d.js"></script>
+<script src="/8c5cea80.2bfe197e.js"></script>
 
 
 </body>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="generator" content="Docusaurus">
+<meta name="generator" content="Docusaurus v2.0.0-alpha.50">
 
 
 <title data-react-helmet="true">forms | Drupal Stickers Book</title>
@@ -15,6 +15,25 @@
 
 <link rel="stylesheet" href="/styles.3b60f707.css">
 
+
+<link rel="preload" href="/styles.3ddcc023.js" as="script">
+
+<link rel="preload" href="/runtime~main.99fe9195.js" as="script">
+
+<link rel="preload" href="/main.9cf79533.js" as="script">
+
+<link rel="preload" href="/1.75375973.js" as="script">
+
+<link rel="preload" href="/2.48cc12ae.js" as="script">
+
+<link rel="preload" href="/37.de619ef9.js" as="script">
+
+<link rel="preload" href="/20ac7829.bb5b7f22.js" as="script">
+
+<link rel="preload" href="/17896441.71794945.js" as="script">
+
+<link rel="preload" href="/2deabae7.a649c31b.js" as="script">
+
 </head>
 <body>
 <script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=window.matchMedia("(prefers-color-scheme: dark)"),n=function(){var t=null;try{t=localStorage.getItem("theme")}catch(t){}return t}();null!==n?t(n):e.matches&&t("dark")}()</script>
@@ -23,23 +42,23 @@
 <code>$settings[&#x27;file_private_path&#x27;] = &#x27;sites/intranet-hennessy/files/private&#x27;;</code></li><li>vider le cache</li><li>vérifier que le path est renseigné dans <a href="http://intranet-hennessy.local/admin/config/media/file-system">http://intranet-hennessy.local/admin/config/media/file-system</a></li></ul><ol><li>Installer le module webform</li><li>Créer les modèles de formulaire :</li></ol><ul><li>Créer un type de contenu webform</li><li>configurer le mode d&#x27;envoi et les champs à afficher dans le formulaire</li></ul><ol><li>Ajouter un formulaire à un node :</li></ol><ul><li>Créer un contenu webform</li><li>Sélectionner le modèle webform préalablement créé</li></ul><h2><a aria-hidden="true" tabindex="-1" class="anchor enhancedAnchor_ZqCz" id="créer-un-formulaire-sous-forme-de-popin---pas-encore-valide"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#créer-un-formulaire-sous-forme-de-popin---pas-encore-valide" title="Direct link to heading">#</a>Créer un formulaire sous forme de popin - PAS ENCORE VALIDE</h2><ol><li>Installer et activer le module simple_popup_blocks</li><li>Clear cache.</li><li>Go to admin/structure/block on the content region click place block.</li><li>Search for webform. Click place.</li><li>In webform option search for your webform. Unselect the ’Display title option’ and save the block.</li><li>Click save blocks.</li><li>Go to admin/config/media/simple_popup_blocks/add</li><li>From block list option search for your webform.</li><li>From Choose layout select Top center.</li><li>Form Trigger method option select Manual - on click event.</li><li>In Add css id add “.class_utilisee_pour_le_lien_du_cta”.</li><li>Click on convert to pop-up.</li></ol><h2><a aria-hidden="true" tabindex="-1" class="anchor enhancedAnchor_ZqCz" id="tips"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#tips" title="Direct link to heading">#</a>Tips</h2><ol><li>Show/Hide password(input field)</li></ol><ul><li>Add a picto in the input field</li><li>Add js code on this picto (it toggles the password field type between text/password) :<div class="mdxCodeBlock_iHAB"><div class="codeBlockContent_32p_"><button type="button" aria-label="Copy code to clipboard" class="copyButton_1BYj">Copy</button><div tabindex="0" class="prism-code language-undefined codeBlock_19pQ"><div class="codeBlockLines_2n9r" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain">$(&quot;.link--password&quot;).click(function(e) {</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">    e.preventDefault();</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">    console.log(&#x27;input:&#x27;, $(this).parent().siblings(&#x27;input&#x27;));</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">    var input = $(this).parent().siblings(&#x27;input&#x27;);</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">    if (input.attr(&quot;type&quot;) == &quot;password&quot;) {</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">      input.attr(&quot;type&quot;, &quot;text&quot;);</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">    } else {</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">      input.attr(&quot;type&quot;, &quot;password&quot;);</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">    }</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">});</span></div></div></div></div></div></li></ul></div></article><div class="margin-vert--lg"><nav class="pagination-nav"><div class="pagination-nav__item"><a class="pagination-nav__link" href="/docs/dynamisation/search"><div class="pagination-nav__link--sublabel">Previous</div><div class="pagination-nav__link--label">« search</div></a></div><div class="pagination-nav__item pagination-nav__item--next"><a class="pagination-nav__link" href="/docs/dynamisation/taxonomies"><div class="pagination-nav__link--sublabel">Next</div><div class="pagination-nav__link--label">taxonomies »</div></a></div></nav></div></div></div><div class="col col--3"><div class="tableOfContents_TbNY"><ul class="contents contents__left-border"><li><a href="#créer-un-formulaire-sous-forme-de-popin---pas-encore-valide" class="contents__link">Créer un formulaire sous forme de popin - PAS ENCORE VALIDE</a></li><li><a href="#tips" class="contents__link">Tips</a></li></ul></div></div></div></div></div></main></div></div><footer class="footer footer--dark"><div class="container"><div class="row footer__links"><div class="col footer__col"><h4 class="footer__title">Docs</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" href="/docs/setup/introduction">Docs</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Community</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" target="_blank" rel="noopener noreferrer" href="https://abecms.slack.com">Slack</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Website</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" target="_blank" rel="noopener noreferrer" href="https://livingcolor.fr">Website</a></li></ul></div></div><div class="text--center"><div class="margin-bottom--sm"><a href="https://opensource.facebook.com/" target="_blank" rel="noopener noreferrer" class="footerLogoLink_1Wg7"><img class="footer__logo" alt="Facebook Open Source Logo" src="https://docusaurus.io/img/oss_logo.png"></a></div><div>Copyright © 2020 Abe SAS. Built with Docusaurus.</div></div></div></footer>
 </div>
 
-<script src="/styles.3c3a668b.js"></script>
+<script src="/styles.3ddcc023.js"></script>
 
-<script src="/runtime~main.f3bb7d0d.js"></script>
+<script src="/runtime~main.99fe9195.js"></script>
 
-<script src="/main.5a62b7d2.js"></script>
+<script src="/main.9cf79533.js"></script>
 
-<script src="/1.4841b003.js"></script>
+<script src="/1.75375973.js"></script>
 
-<script src="/2.8158efa6.js"></script>
+<script src="/2.48cc12ae.js"></script>
 
-<script src="/37.7d1b0bfb.js"></script>
+<script src="/37.de619ef9.js"></script>
 
-<script src="/20ac7829.a4bf8ffe.js"></script>
+<script src="/20ac7829.bb5b7f22.js"></script>
 
-<script src="/17896441.8231db86.js"></script>
+<script src="/17896441.71794945.js"></script>
 
-<script src="/2deabae7.17d4292a.js"></script>
+<script src="/2deabae7.a649c31b.js"></script>
 
 
 </body>
