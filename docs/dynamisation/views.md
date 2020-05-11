@@ -37,7 +37,7 @@ Par exemple pour une vue "agenda" qui affiche des nodes dont le type de contenu 
 
 Il faudra ensuite utiliser le module custom view_filter que nous avons créé
 #### Tips ajax
-1. Ne pas delete les div (contenant les classes js appropriées) que ce soit views-view.html.twig - container.html.twig ou views-view-unformatted.html.twig
+1. Ne pas delete les div (contenant les classes js appropriées) dans les fichiers concernés : views-view.html.twig - container.html.twig et views-view-unformatted.html.twig
 1. Pour l'infinite scroll en ajax bien garder les classes js (comme les autres files) ET bien garder les tags html ul/li
 1. Dans le cas des filtres de vue, éxécuter le tri en js et cacher les filtres : 
 ```
