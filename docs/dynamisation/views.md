@@ -36,6 +36,21 @@ Par exemple pour une vue "agenda" qui affiche des nodes dont le type de contenu 
 1. Use Ajax
 
 Il faudra ensuite utiliser le module custom view_filter que nous avons créé
+#### Tips ajax
+1. Ne pas delete les div (contenant les classes js appropriées) que ce soit views-view.html.twig - container.html.twig ou views-view-unformatted.html.twig
+1. Pour l'infinite scroll en ajax bien garder les classes js (comme les autres files) ET bien garder les tags html ul/li
+1. Dans le cas des filtres de vue, éxécuter le tri en js et cacher les filtres : 
+```
+jQuery('body').on('click', '.w-tab-link', function() {
+  $this = jQuery(this);
+
+  jQuery('.w--current').removeClass('w--current');
+  $this.addClass('w--current');
+  $("select[name='field_category_target_id']").val($this.data('taxo'));
+  $('.js-demos-list-submit').click();
+});
+```
+PS: Attention à bien détecter le clique sur le body plutôt que directement sur la classe !
 
 ## Permettre l'affichage de résultats en fonction de 2 champs contextuels différents
 Ex. J'ai créé un champ au niveau du node article appelé "co-auteur". Ainsi un utilisateur peut-être auteur ou co-auteur d'un article. Pour afficher tous les articles dans lesquels il est auteur ou co-auteur :
