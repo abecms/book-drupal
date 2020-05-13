@@ -15,7 +15,7 @@ A noter qu'on peut choisir en configurant les boutons les couleurs proposées.
 1. In Available Buttons, drag Styles from the Available Buttons to the Active Toolbar
 1. Once Styles is added to the Active Toolbar, in the CKEditor plugin settings > Styles dropdown, add your style configurations.
 
-![](/static/img/ckeditor-styles.png)
+![](/img/ckeditor-styles.png)
 
 1. Uncheck `Limit allowed HTML tags and correct faulty HTML`
 1. For real-time behavior in the CKEditor as well, all you need to do is add the CKEditor stylesheet library in your theme info.yml file :
