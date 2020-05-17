@@ -32,9 +32,9 @@ Pour remplacer le loader ajax drupal par un custom loader il faut :
 1. le module Ajax Loader - `https://www.drupal.org/project/ajax_loader`
 1. On copie le repertoire `modules/contrib/src/Plugin/ajax_loader` dans module le module customization `public/sites/default/modules/custom/customization/src/Plugin/ajax_loader`
 1. Les custom Loader commencent par `Trobbernomduloader.php`
-1. Ne garder qu'un seul fichier php et le renommer du nom du loader voulu `Trobbernomduclient.php` et   
+1. Ne garder qu'un seul fichier php et le renommer du nom du loader voulu `Trobbernomduclient.php` et
 remplacer dans le fichier la class et la fonction pour ne pas provoquer de conflit avec le nom voulu.
-1. Dans la fonction `setMarkup` remplacer le `return` par votre loader. ie: 
+1. Dans la fonction `setMarkup` remplacer le `return` par votre loader. ie:
 ```php
 protected function setMarkup() {
     return '<div class="preloader-drupal"><div></div><div></div><div></div></div>';
@@ -75,6 +75,274 @@ Create a template for the newsletter body simplenews-newsletter-body--[newslette
 - set mailsystem to use swiftmailers default formatter plugin
 - set mailsystem to use swiftmailers default sender plugin
 
+### Pathauto
+
+#### Ajouter des conditions sur la création des patterns de pathauto
+source: https://www.deeson.co.uk/labs/dynamic-patterns-pathauto
+
+Si vous voulez par exemple créer des patterns en fonction d'un type de contenu `notice` et d'une valeur de champ de taxonomie `type_de_groupe`
+
+1. Créer une classe de plugin de condition qui s'ajoutera aux conditions des patterns Pathauto
+2. Déclarer ce plugin à Drupal
+3. Injecter ce plugin de condition dans le formulaire de création/édition de pattern pathauto
+4. Traiter la validation du formulaire de création/édition de pattern de pathauto
+
+Dans my_module/src/Plugin/Condition/ProgramGroup
+```
+<?php
+
+namespace Drupal\my_module\Plugin\Condition;
+
+use Drupal\Core\Condition\ConditionPluginBase;
+use Drupal\Core\Entity\EntityFieldManagerInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+
+/**
+ * Provides a 'Program Group' condition.
+ *
+ * @Condition(
+ *   id = "program_group",
+ *   label = @Translation("Program Group"),
+ *   context = {
+ *     "node" = @ContextDefinition("entity:node", label = @Translation("Node"))
+ *   }
+ * )
+ */
+class ProgramGroup extends ConditionPluginBase implements ContainerFactoryPluginInterface
+{
+
+  /**
+   * The entity field manager.
+   *
+   * @var \Drupal\Core\Entity\EntityFieldManagerInterface
+   */
+    protected $fieldManager;
+
+    /**
+     * Creates a new ProgramGroup instance.
+     *
+     * @param \Drupal\Core\Entity\EntityFieldManagerInterface $field_manager
+     *   The entity field manager.
+     * @param array $configuration
+     *   The plugin configuration, i.e. an array with configuration values keyed
+     *   by configuration option name. The special key 'context' may be used to
+     *   initialize the defined contexts by setting it to an array of context
+     *   values keyed by context names.
+     * @param string $plugin_id
+     *   The plugin_id for the plugin instance.
+     * @param mixed $plugin_definition
+     *   The plugin implementation definition.
+     */
+    public function __construct(EntityFieldManagerInterface $field_manager, array $configuration, $plugin_id, $plugin_definition)
+    {
+        parent::__construct($configuration, $plugin_id, $plugin_definition);
+        $this->fieldManager = $field_manager;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition)
+    {
+        return new static(
+            $container->get('entity_field.manager'),
+            $configuration,
+            $plugin_id,
+            $plugin_definition
+        );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function buildConfigurationForm(array $form, FormStateInterface $form_state)
+    {
+        $form['program_group'] = [
+            '#title' => $this->t('Program Group'),
+            '#type' => 'select',
+            '#options' => $this->getProgramGroups(),
+            '#default_value' => $this->configuration['program_group'],
+            '#empty_value' => '',
+        ];
+        return parent::buildConfigurationForm($form, $form_state);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function submitConfigurationForm(array &$form, FormStateInterface $form_state)
+    {
+        $this->configuration['program_group'] = $form_state->getValue('program_group');
+        parent::submitConfigurationForm($form, $form_state);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function summary()
+    {
+        if ($program_group = $this->configuration['program_group']) {
+            $program_groups = $this->getProgramGroups();
+            $replace = ['@program_group' => $program_groups[$program_group]];
+
+            return $this->isNegated()
+                ? $this->t('Cette notice n\'appartient pas au groupe @program_group', $replace)
+                : $this->t('Cette notice appartient au groupe @program_group', $replace);
+        }
+
+        // If no list is selected it means the program group should not be listed.
+        return $this->isNegated() ? $this->t('The program group is listed') : $this->t('The program group is not listed');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function evaluate()
+    {
+        $node = $this->getContextValue('node');
+
+        // This condition always fails if the node is not a notice.
+        if ($node->bundle() !== 'notice') {
+            return false;
+        }
+
+        // Check whether the node is listed on the selected list.
+        $node_program_group = $node->field_groupe_de_programmes[0]->entity->name->value;
+        if ($program_group = $this->configuration['program_group']) {
+            return $node_program_group == $program_group xor $this->isNegated();
+        }
+
+        // If no list is selected it means the event should not be listed.
+        return empty($node_program_group) xor $this->isNegated();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function defaultConfiguration()
+    {
+        return ['program_group' => ''] + parent::defaultConfiguration();
+    }
+
+    /**
+     * Retrieves the possible event lists.
+     *
+     * @return string[]
+     *   The list of possible event lists, keyed by their machine name.
+     */
+    public function getProgramGroups()
+    {
+        $existingTerms = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadTree('groupe_de_programmes');
+        $taxoArray = [];
+        foreach ($existingTerms as $existingTerm) {
+            $taxoArray[] = $existingTerm->name;
+        }
+
+        return $taxoArray;
+    }
+}
+```
+
+Dans my_module/config/schema/customization.schema.yml
+```
+condition.plugin.program_group:
+    type: condition.plugin
+    mapping:
+      program_group:
+        type: string
+```
+
+Dans my_module/my_module.module
+```
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * @see \Drupal\pathauto\Form\PatternEditForm
+ */
+function customization_form_pathauto_pattern_form_alter(&$form, $form_state)
+{
+    /** @var \Drupal\pathauto\Entity\PathautoPattern $entity */
+    $entity = $form_state->getFormObject()->getEntity();
+
+    if ($entity->get('type') == 'canonical_entities:node') {
+        // Search the Pathauto pattern for our program_group condition.
+        foreach ($entity->getSelectionConditions() as $candidate) {
+            if ($candidate->getPluginId() == 'program_group') {
+                $condition = $candidate;
+                break;
+            }
+        }
+
+        // If we could not find a configured condition, create an empty one.
+        if (empty($condition)) {
+            /** @var \Drupal\Core\Condition\ConditionManager $condition_manager */
+            $condition_manager = \Drupal::service('plugin.manager.condition');
+            $condition = $condition_manager->createInstance('program_group');
+        }
+
+        // Add the condition plugin form to the form, removing the negate checkbox.
+        $condition_form = $condition->buildConfigurationForm($form['pattern_container'], $form_state);
+        unset($condition_form['negate']);
+        $form['pattern_container'] += $condition_form;
+
+        // Add our submit handler after ::submit but before ::save.
+        $offset = array_search('::submit', $form['actions']['submit']['#submit']) + 1;
+        array_splice($form['actions']['submit']['#submit'], $offset, 0, 'customization_pathauto_pattern_submit');
+    }
+}
+
+/**
+ * Submit handler for form ID pathauto_pattern_form.
+ *
+ * @see customization_form_pathauto_pattern_form_alter()
+ */
+function customization_pathauto_pattern_submit($form, $form_state)
+{
+    /** @var \Drupal\pathauto\Entity\PathautoPattern $entity */
+    $entity = $form_state->getFormObject()->getEntity();
+
+    if ($program_group = $form_state->getValue('program_group')) {
+        $entity->addSelectionCondition([
+        'id' => 'program_group',
+        'program_group' => $program_group,
+        'negate' => false,
+        'context_mapping' => [
+          'node' => 'node',
+        ],
+      ]);
+    }
+}
+```
+
+#### Permettre de générer plusieurs alias pour un même node (Drupal >8.8)
+(bien penser à mettre le canonical sur la bonne URL racine). Créer plusieurs URL pour un même node peut être pertinent.
+On utilise le hook `HOOK_pathauto_alias_alter` :
+
+```
+function customization_pathauto_alias_alter(&$alias, array &$context)
+{
+    if (isset($context['data']['node']) && $context['data']['node']->bundle() === 'notice') {
+        $node = $context['data']['node'];
+        $typeProgramme = $node->field_type_de_programme[0]->entity->name->value;
+        $groupeProgramme = $node->field_groupe_de_programmes[0]->entity->name->value;
+
+        if ($typeProgramme === 'programme' &&  $groupeProgramme === 'unitaire') {
+            $parts = explode('/', $alias);
+            $playerAlias = $alias.'/player/'.strtolower($node->field_identifiant->value).'/'.$parts[2];
+            $pathAlias = \Drupal\path_alias\Entity\PathAlias::create([
+              'path' => '/node/'.$node->id(),
+              'alias' => $playerAlias,
+              'langcode' => 'fr'
+            ]);
+            $pathAlias->save();
+        }
+    }
+}
+```
+
 ### Metatag
 - Installer le module metatag
 - Pour personnaliser un node, il suffit de créer un nouveau champ de type metatag pour ce type de contenu. Automatiquement, il permettra de personnaliser les meta sur chaque node (dans l'édition du node menu metatag à droite)
@@ -85,6 +353,69 @@ Create a template for the newsletter body simplenews-newsletter-body--[newslette
   - Puis modifier les metatag par défaut : sans /admin/config/search/metatag
     - pour l'entité  concernée cliquer sur modifier
     - ajouter la valeur souhaitée pour les différents tag. Exemple pour le metatag MEDIA VIDEO, mettre [media:field_poster:large] pour la version large de l'url du poster
+
+#### Change / add metatags, links, title for a specific page in a controller
+1. make sure that the Metatag module doesn't have a global config for the tags you want to change
+2. In your Controller, you may create a `$htmlHead` array. Then add your tags and links as follow (such an entry is composed by the array of data + a key (ie 'linkprevious'))
+
+Consider the way we change the title of the page (`'#title' => 'Résultats de recherche - '.$input`)
+
+```
+$htmlHead = [];
+$urlWithoutSort = str_replace('&sort='.$sort, '', \Drupal::request()->getRequestUri());
+$htmlHead[] = [
+    [
+        '#tag' => 'meta',
+        '#attributes' => [
+            'name' => 'canonical',
+            'content' => $urlWithoutSort,
+        ],
+    ],
+    'tag'
+];
+
+if (true) {
+    $htmlHead[] = [
+        [
+            '#tag' => 'link',
+            '#attributes' => [
+                'rel' => 'next',
+                'href' => str_replace('&page='.$page, '', $urlWithoutSort).'&page='.($page + 1)
+            ],
+        ],
+        'linkprevious'
+    ];
+}
+
+if ($page && $page > 1) {
+    $htmlHead[] = [
+        [
+            '#tag' => 'link',
+            '#attributes' => [
+                'rel' => 'previous',
+                'href' => str_replace('&page='.$page, '', $urlWithoutSort).'&page='.($page - 1)
+            ],
+        ],
+        'linknext'
+    ];
+}
+
+return [
+    self::QTHEME => 'my_module_search_page',
+    '#q' => $input,
+    '#video' => (count($resultVideo[self::QHITS]) > 0) ? true : false,
+    '#audio' => (count($resultAudio[self::QHITS]) > 0) ? true : false,
+    '#article' => false,
+    '#children' => [
+        $resultVideo,
+        $resultAudio,
+    ],
+    '#attached' => [
+        'html_head' => $htmlHead
+    ],
+    '#title' => 'Résultats de recherche - '.$input
+];
+```
 
 ### ElasticSearch
 Note: ```http://letstoob.info/drupal-8/how-to-integrate-elasticsearch-6-3-0-with-drupal-8-5/```
@@ -250,7 +581,7 @@ Pour remplacer, ajouter, supprimer une classe par ex. il suffit juste d'utiliser
 1. Installer les modules Captcha et reCaptcha (https://www.drupal.org/project/recaptcha)
 2. Aller dans configuration/personnes/Captcha et configurer Captcha et reCaptcha : Bien créer un reCaptcha Google avec les bonnes clés et autorisant les bons domaines.
 3. Aller dans le modèle du webform et ajouter un champ de type reCaptcha. Enjoy !
-4. Important décocher `Local domain name validation` dans la configuration drupal si il est cocher côtés serveur et inversement 
+4. Important décocher `Local domain name validation` dans la configuration drupal si il est cocher côtés serveur et inversement
 ### Datalayer
 #### Bug lors de la suppresion d'un inscrit newsletter (via simplenews)
 attention patch à faire (manuel) sur datalayer.module pour éviter un message d'erreur sur la suppression d'un inscrit newsletter (ligne 331) :
@@ -335,7 +666,7 @@ https://www.drupal.org/project/hierarchical_term_formatter
 Ce module permet d'afficher une taxonomie ainsi que ses parents dans une hiérarchie.
 
 ### taxonomy_menu
-Ce module permet de créer un menu à partir d'une taxonomy. 
+Ce module permet de créer un menu à partir d'une taxonomy.
 > NB : Pour pouvoir ordonner les termes en drag and drop à partir de la taxonomie concernée, il faut cocher la case "Use term weight order" dans la configuration de Taxonomy menu
 
 ### Maestro : business process workflow
@@ -577,20 +908,20 @@ Here's my solution using only Graph API Explorer & Access Token Debugger:
 - "Expires" should be "Never"
 
 ### view unpublished
-Lorsque des droits restreints sont appliqués sur des types de contenus pour un rôle donné, les contenus unpublished ne sont pas visibles de ce rôle. L'installation du module view_unpublished permet d'appliquer les droits de "voir les contenus non publiés" pour chaque type de contenu (voir "view unpublished" dans admin/people/permissions). 
+Lorsque des droits restreints sont appliqués sur des types de contenus pour un rôle donné, les contenus unpublished ne sont pas visibles de ce rôle. L'installation du module view_unpublished permet d'appliquer les droits de "voir les contenus non publiés" pour chaque type de contenu (voir "view unpublished" dans admin/people/permissions).
 Une fois installé, il est nécessaire de recalculer les droits (un message apparaitra en BO).
 
 
 ### Robot
-Afin de définir la valeur du fichier robots.txt installer le module "RobotsTxt". 
+Afin de définir la valeur du fichier robots.txt installer le module "RobotsTxt".
 A noter : Il est nécessaire de supprimer (ou renommer) le fichier robots.txt déjà présent pour que le module affiche son propre robots.txt
 
 
 ### Views Reference Field
 Ce module permet de référencer une vue dans le champs d'un node. Une fois installé :
-1. Créer la vue 
+1. Créer la vue
 1. Créer un nouveau champ dans le contenu concerné
-  - Type de champ = views reference 
+  - Type de champ = views reference
   - Type d'élément à référencer = vue
   - View display plugins to allow = bloc
   - Preselect View Options = Sélectionner la vue créer à l'étape 1
