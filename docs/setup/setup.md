@@ -522,3 +522,7 @@ The static should be put in files directory of the drupal.
         index index.html;
     }
 ```
+
+# Désactiver dblog
+
+`drush pm-disable dblog`
