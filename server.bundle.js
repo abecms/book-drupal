@@ -22545,7 +22545,7 @@ width: 100%;
         alias /absolute/path/to/files/staticsitedirectory/$1;
         index index.html;
     }
-`)));};MDXContent.isMDXComponent=true;
+`)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("h1",{"id":"désactiver-dblog"},`Désactiver dblog`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("inlineCode",{parentName:"p"},`drush pm-disable dblog`)));};MDXContent.isMDXComponent=true;
 
 /***/ }),
 /* 177 */
