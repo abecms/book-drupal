@@ -72,6 +72,9 @@
 - docroot/modules/contrib/recaptcha
 - docroot/modules/contrib/simple_popup_blocks
 
+### USERS
+- docroot/modules/contrib/simple_pass_reset
+
 ### MAIL & NEWSLETTER
 - docroot/modules/contrib/mailsystem
 - docroot/modules/contrib/simplenews
