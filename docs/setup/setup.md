@@ -187,6 +187,23 @@ Uncaught TypeError: Cannot read property 'currentQuery' of undefined
 ```
 
 1. Attention à ne pas laisser une div ouverte dans le body d'une page html.html.twig OU que ```<js-bottom-placeholder token="{{ placeholder_token|raw }}">``` soit bien situé à la fin du body hors d'un ```<div>```
+2. ATTENTION, pour que les placeholders fonctionnent :
+```
+<head-placeholder token="{{ placeholder_token|raw }}">
+
+<!-- placeholders -->
+<css-placeholder token="{{ placeholder_token|raw }}">
+<js-placeholder token="{{ placeholder_token|raw }}">
+<js-bottom-placeholder token="{{ placeholder_token|raw }}">
+<!-- /placeholders -->
+```
+
+Il faut que {{page}} soit présent dans la page. Si vous ne voulez pas afficher le contenu de {{page}}, faites :
+```
+{% set rendered_page %}
+  {{ page }}
+{% endset %}
+```
 
 ## Debug
 1. Activer le module kint puis aller dans modules/contrib/devel/kint/config.default.php et changer ```$_kintSettings['maxLevels'] = 4;``` et lui mettre un niveau 4
