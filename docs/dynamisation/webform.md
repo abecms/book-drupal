@@ -25,3 +25,17 @@ function customization_webform_submission_presave($submission)
   }
 }
 ```
+
+# Récupérer l'id d'un webform depuis une soumission
+
+Dans cet exemple il s'agit d'un formulaire soumis dans le cadre d'un workflow Maestro
+
+```
+$sid = MaestroEngine::getEntityIdentiferByUniqueID($processID, 'submission');
+
+  if ($sid) {
+    $webform_submission = WebformSubmission::load($sid);
+    $webform = $webform_submission->getWebform();
+    $webform_id = $webform->get('id');
+  }
+```
