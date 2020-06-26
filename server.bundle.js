@@ -20675,6 +20675,13 @@ Et lorsque la soumission est flaggée par l'admin depuis la vue :`),Object(_mdx_
     }
   }
 }
+`)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("h1",{"id":"récupérer-lid-dun-webform-depuis-une-soumission"},`Récupérer l'id d'un webform depuis une soumission`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`Dans cet exemple il s'agit d'un formulaire soumis dans le cadre d'un workflow Maestro`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("pre",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("code",Object(_home_runner_work_book_drupal_book_drupal_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"pre"},{}),`$sid = MaestroEngine::getEntityIdentiferByUniqueID($processID, 'submission');
+
+  if ($sid) {
+    $webform_submission = WebformSubmission::load($sid);
+    $webform = $webform_submission->getWebform();
+    $webform_id = $webform->get('id');
+  }
 `)));};MDXContent.isMDXComponent=true;
 
 /***/ }),
