@@ -86,6 +86,22 @@ field_link.0.url.isExternal()
 ```
 {{ node.field_date.value | date('U') | format_date("custom", "l d F") }} pour personnaliser une date
 ```
+## Connaitre les jours de différence entre 2 dates 
+```
+{% set difference = datePlusGrande - datePlusPetite %}
+```
+##### Pour afficher les jours : 
+```
+{% set leftDays = (difference / 60 / 60 / 24)|round(0, 'common') %}
+```
+##### Pour afficher les heures:
+```
+{% set leftDays = (difference / 60 / 60 / 24)|round(3, 'common') %}
+{% set heures = leftDays|split('.') %}
+
+{{(heures.1 * 0.024)|round(0, 'ceil') }}
+
+```
 ## Récupérer et formater la date de création et modification d'un node
 ```
 {{ node.created.value | date('U') | format_date("custom", "d F Y") }}
