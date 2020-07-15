@@ -22071,6 +22071,21 @@ dans notre exemple, si j'ai créé le hook `,Object(_mdx_js_react__WEBPACK_IMPOR
 `)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`Afin d'utiliser les valeurs du cookie qui sont ici une liste de string JSON .
 Il faudra utiliser  le template twig |split`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("pre",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("code",Object(_home_runner_work_book_drupal_book_drupal_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"pre"},{}),`{% set cookie = get_cookie('age-gate')|split('"')  %}
 
+`)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("h1",{"id":"limiter-les-dates-dans-un-champs-date"},`Limiter les dates dans un champs date`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("ol",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("li",{parentName:"ol"},`Créer le champ date en BO (exemple: field_date)`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("li",{parentName:"ol"},`Dans le .theme éditer les formulaires et étendre le #after_build du champ date :`)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("pre",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("code",Object(_home_runner_work_book_drupal_book_drupal_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"pre"},{}),`function h1765_form_alter(&$form, $form_state, $form_id) {
+  if (isset($form['actions'])) {
+    if ($form['#form_id'] === "node_annonce_edit_form" || $form['#form_id'] === "node_annonce_form") {
+      $form['field_date']['widget']['#after_build'] =  array("custom_range_date");
+    }
+  }
+}
+`)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("ol",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("li",{parentName:"ol"},`Créer la fonction qui va gérer les restrictions de la date (ici restrictions que sur l'année):`)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("pre",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("code",Object(_home_runner_work_book_drupal_book_drupal_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"pre"},{}),`function custom_range_date($form_element, &$form_state){
+  foreach ($form_element[0]['value']['year']['#options'] as $option) {
+    if ($option < date("Y")) {
+      unset($form_element[0]['value']['year']['#options'][$option]);
+    }
+  }
+  return $form_element;
+}
 `)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("h1",{"id":"rediriger-un-utilisateur-au-login-en-fonction-de-son-profil"},`Rediriger un utilisateur au login en fonction de son profil`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`ATTENTION : NE JAMAIS UTILISER `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("inlineCode",{parentName:"p"},`REDIRECT`),` DANS LE HOOK _user_login (cela ne fonctionne pas correctement)`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("pre",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("code",Object(_home_runner_work_book_drupal_book_drupal_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"pre"},{}),`function MYMODULE_user_login($account)
 {
   $user = \\Drupal::currentUser();
