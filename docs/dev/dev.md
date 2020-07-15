@@ -706,6 +706,30 @@ Il faudra utiliser  le template twig |split
 
 ```
 
+# Limiter les dates dans un champs date
+1. Créer le champ date en BO (exemple: field_date)
+1. Dans le .theme éditer les formulaires et étendre le #after_build du champ date :
+```
+function h1765_form_alter(&$form, $form_state, $form_id) {
+  if (isset($form['actions'])) {
+    if ($form['#form_id'] === "node_annonce_edit_form" || $form['#form_id'] === "node_annonce_form") {
+      $form['field_date']['widget']['#after_build'] =  array("custom_range_date");
+    }
+  }
+}
+```
+1. Créer la fonction qui va gérer les restrictions de la date (ici restrictions que sur l'année):
+```
+function custom_range_date($form_element, &$form_state){
+  foreach ($form_element[0]['value']['year']['#options'] as $option) {
+    if ($option < date("Y")) {
+      unset($form_element[0]['value']['year']['#options'][$option]);
+    }
+  }
+  return $form_element;
+}
+```
+
 # Rediriger un utilisateur au login en fonction de son profil
 
 ATTENTION : NE JAMAIS UTILISER `REDIRECT` DANS LE HOOK _user_login (cela ne fonctionne pas correctement)
