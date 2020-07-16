@@ -605,7 +605,7 @@ composer require drupal/amp masterminds/html5:~2.3.0
 
 ### flag
 #### Créer ses propres liens de bookmarks par le user
-- utiliser le module flag et:
+- utiliser le module flag(/admin/structure/flags) et:
 1. créer un type de block (ex. myOwnBookmarks)
 2. Créer un block de ce type (utilisons aussi myOwnBookmarks comme nom)
 3. Créer un flag (aussi myOwnBookmarks :) associé au type de bloc myOwnBookmarks.
