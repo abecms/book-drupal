@@ -155,12 +155,19 @@ Ce qui donne :
 
 ## Créer une vue qui recense les medias et leur utilisation
 
+Vous avez besoin de nettoyer votre bibliotèque (library) média.  
+Vous avez besoin d'une vue qui regroupe l'ensemble des médias dans la biliotèque ainsi que leur utilisation (ou pas) sur le site.
+
+### Config
+
 * Module nécessaire `Entity Usage`
 * Dans la config de Entity Usage `admin/config/entity-usage/settings` cocher `Media`.
-* Dans chaque media il y a dorémavant un onglet `Usage` qui liste les entités ou est utulisé le media
+* Dans chaque media il y a dorénavant un onglet `Usage` qui liste les entités ou est utulisé le media
+
+### Vue
 
 Pour créer la vue.
-Ajouter une vue de type page 
+Ajouter une vue de type page avec les paramètres suivants.
 
 * FORMAT
   * Format:Table | Settings
