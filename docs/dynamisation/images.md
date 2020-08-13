@@ -151,3 +151,43 @@ Ce qui donne :
 ```
 {{ drupal_entity(‘media’, site_settings.image_oenology.image_youngest)[‘#media’].field_media_image.entity.uri.value }}
 ```
+
+
+## Créer une vue qui recense les medias et leur utilisation
+
+* Module nécessaire `Entity Usage`
+* Dans la config de Entity Usage `admin/config/entity-usage/settings` cocher `Media`.
+* Dans chaque media il y a dorémavant un onglet `Usage` qui liste les entités ou est utulisé le media
+
+Pour créer la vue.
+Ajouter une vue de type page 
+
+* FORMAT
+  * Format:Table | Settings
+
+* FIELDS
+  * Media: Name (Name) | Aggregation settings
+  * Media: Image landscape (Thumbnail) | Aggregation settings
+  * Media: ID (ID) [hidden] | Aggregation settings
+(Usage information (Media)) COUNT(Entity Usage: Usage count) (Usage count) | Aggregation settings
+
+* FILTER CRITERIA
+  * Media: Published (= True) | Aggregation settings
+  * Media: Media type (= Image landscape) | Aggregation settings
+  * Media: Name (exposed) | Aggregation settings
+
+* SORT CRITERIA
+  * (Usage information (Media)) Entity Usage: Usage count (Exposed) | Aggregation settings
+
+
+* PAGE SETTINGS
+  * Path:/admin/image-usage
+  * Menu:Normal: Media Usage
+  * Access:Role | Administrateur
+
+* PAGER
+  * Use pager:Full | Paged, 50 items
+
+* ADVANCED
+  * RELATIONSHIPS
+    * Usage information (Media)
