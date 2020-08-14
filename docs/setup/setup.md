@@ -489,6 +489,7 @@ ATTENTION : Si vous avez un message d'erreur sur deepcopy quand vous exécuter d
 1. update db : drush updb (-y)
 1. Remove module : drush pm-uninstall
 1. Delete a specific node : drush entity:delete node ```<nid>```
+1. Recontruire les autorisations : `drush php-eval 'node_access_rebuild();'`
 
 ### Flush image style
 1. If you want to flush all images of a specific image style : run `vendor/bin/drush image-flush name_of_the_imagestyle`
