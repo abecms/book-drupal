@@ -285,3 +285,62 @@ function solutions_preprocess_html(&$vars) {
 
 # Preview type de contenu
 1. cocher "facultatif" dans la section "Apercu avant soumission" dans : structure > type de contenu > (exp: 'article') > modifier
+
+
+
+# Acces spécifique à la modification d'un node.
+
+On va utiliser le module [nodeaccess](https://www.drupal.org/project/nodeaccess) dont la config se trouve ici :`admin/config/people/nodeaccess`
+
+Ce module va nous permettre de donner des droits spécifiques par type de contenu et/ou par node. Bref sécuriser un node.
+
+On peut même aller jusqu'à donner accès à 1 user à 1 node.
+
+* Création d'un role. `/admin/people/roles/add`
+
+Dans la config du module nodeaccess `admin/config/people/nodeaccess` on va dire à quel type de contenu ce role à Accès.
+
+1. Allowed Grants - Quel type de droit modifiable dans l'onglet Grants
+* View
+* Edit
+* Delete
+
+1. Allowed Roles - Quel Type de role peuvent être customisables
+* Authenticated user
+* Administrator
+* Utilisateur invité
+* Administrateur région
+* Maison Krug Market All Admin
+* Maison Krug Market De Contributor
+...
+
+Ensuite par type de contenu choisir les roles.
+Pensez à cocher dans le type de contenu souhaité `Show grant tab for this node type`
+Cela permet dans un contenu/node de spécifier les droits.
+
+Dans le contenu de votre choix il y a un onglet `Grants`.
+Vous pouvez même aller jusqu'à accorder l'accès ou la modification à un seul user sur un contenu !.
+
+## Creation du role contributor
+
+1. Ajouter un rôle - ie Maison Moet Marche DE Contributor
+1. Ajouter permission nécessaire - dépend du projet
+
+Dans le config du module nodeaccess il faut autoriser le nouveau rôle
+
+1. Dans `admin/config/people/nodeaccess` dans `Allowed Roles` et cocher le nouveau role
+Ensuite il pourra être affecté à un node.
+
+## Autorisation pour accéder au site
+
+1. Créer un contenu de type Brand Plan
+1. l'apeller ` Moet DE - My Brand Plan`
+1. Dans l'onglet `Grants` Cocher :
+* `View` et `Edit` pour Maison Moet Marche DE Contributor
+* `View` pour Maison Moet Marche DE Reader
+
+
+
+
+
+
