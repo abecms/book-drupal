@@ -86,11 +86,11 @@ field_link.0.url.isExternal()
 ```
 {{ node.field_date.value | date('U') | format_date("custom", "l d F") }} pour personnaliser une date
 ```
-## Connaitre les jours de différence entre 2 dates 
+## Connaitre les jours de différence entre 2 dates
 ```
 {% set difference = datePlusGrande - datePlusPetite %}
 ```
-##### Pour afficher les jours : 
+##### Pour afficher les jours :
 ```
 {% set leftDays = (difference / 60 / 60 / 24)|round(0, 'common') %}
 ```
@@ -215,6 +215,87 @@ $nodeArray = [
   $node = Node::create($nodeArray);
   $node->save();
 }
+```
+
+## upload de fichier de puis le front
+Pour permettre l'upload de fichier depuis le front et associer ces fichiers à un node, voici comment procéder (nous utilisons dropzone et axios dans cet exemple, mais il est possible d'utiliser une autre librairie ou un input de type file):
+
+1. Créer un champ de type File dans le node souhaité (on peut autoriser plusieurs valeurs `Allowed number of values`)
+2. Activer le module JSON:API et activer `Accept all JSON:API create, read, update, and delete operations.`
+3. Dans le fichier du theme `mytheme.libraries.yml` ajouter les dépendances dropzone :
+```
+global-styling:
+  Version: 1.x
+  css:
+    theme:
+      ...
+      https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/dropzone.min.css: {}
+  js:
+    ...
+    https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/min/dropzone.min.js: { type: external, minified: true }
+    https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js: { type: external, minified: true }
+```
+4. Dans votre twig node, voici un exemple pour un champ de node de type file appelé ici `field_presentation`. Noter le premier appel pour récupérer un csrf-token puis les headers et `axios.defaults.withCredentials = true` (essentiels) pour que Drupal autorise l'upload.
+```
+<form action="/jsonapi/node/brand_plan/4a0d2604-3f00-437a-9fb0-06bea9321021/field_presentation" class="dropzone" id="MyDropzone">
+	<div class="fallback">
+		<input name="file" type="file" multiple/>
+	</div>
+</form>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function(event) {
+    var csrfToken = ''
+    jQuery.get(Drupal.url('session/token'))
+        .done(function (token) {
+            console.log('token', token);
+            csrfToken = token
+        })
+
+    Dropzone.options.MyDropzone = {
+        autoProcessQueue : false,
+        dictDefaultMessage: "Drop files or click here to upload a new DICOM series ...",
+        init : function() {
+
+            myDropzone = this;
+
+            //Restore initial message when queue has been completed
+            this.on("addedfiles", function(event) {
+                console.log(myDropzone.files);
+                let file = myDropzone.files[0];
+                let filename = file.name;
+                var reader = new FileReader();
+                reader.readAsArrayBuffer(file);
+
+                reader.onabort = () => console.log('file reading was aborted')
+                reader.onerror = () => console.log('file reading has failed')
+                reader.onload = () => {
+                    const arrayStr = reader.result;
+                    axios.defaults.withCredentials = true
+                    axios.post('/jsonapi/node/brand_plan/4a0d2604-3f00-437a-9fb0-06bea9321021/field_presentation',
+                        arrayStr
+                        , {
+                            headers: {
+                                "Content-Type": "application/octet-stream",
+                                "Accept": "application/vnd.api+json",
+                                "Content-Disposition": 'file; filename="' + filename + '"',
+                                'X-CSRF-Token': csrfToken,
+                            }
+                        }
+                    )
+                    .then((response) => {
+                        console.log(response);
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    }.bind(this));
+                }
+            });
+        }
+    };
+});
+</script>
 ```
 
 ## Récupérer l'ID de l'auteur d'un node
