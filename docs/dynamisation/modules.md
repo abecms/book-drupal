@@ -926,3 +926,9 @@ Ce module permet de référencer une vue dans le champs d'un node. Une fois inst
   - View display plugins to allow = bloc
   - Preselect View Options = Sélectionner la vue créer à l'étape 1
 
+
+### Nodeaccess
+
+Ce module permet de sécuriser l'accès à un node. 
+[nodeaccess](https://www.drupal.org/project/nodeaccess)
+Voir [nodes](nodes#acces-spécifique-à-la-modification-dun-node).
