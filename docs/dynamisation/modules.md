@@ -44,7 +44,6 @@ protected function setMarkup() {
 1. dans l'admin `admin/config/user-interface/ajax-loader` Choisissez votre loader qui apparait dans la liste déroulante.
 
 
-
 ### color field
 1. Installer le module color field (https://www.drupal.org/project/color_field)
 2. Ajouter le champ color au contenu souhaité et le configurer dans la section "gérer l'affichage du formulaire"
@@ -796,6 +795,14 @@ Methode pour appliquer le patch [title](https://github.com/abecms/book-drupal8/b
 #### Paiement CB
 - Pour conserver les infos CB : Saisir une phrase dans "Alias usage" pour afficher la case à cocher sur la page ingenico
 
+
+
+### View Mode Page
+Create separate pages for different view modes for a given content type. For example use this module if you need to have 2 differents urls for a same media content type :
+- One url that display the whole node
+- One url that display only the player (for embeding)
+
+https://www.drupal.org/project/view_mode_page
 
 ## Custom
 
