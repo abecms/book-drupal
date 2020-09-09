@@ -800,7 +800,7 @@ Methode pour appliquer le patch [title](https://github.com/abecms/book-drupal8/b
 ### View Mode Page
 Create separate pages for different view modes for a given content type. For example use this module if you need to have 2 differents urls for a same media content type :
 - One url that display the whole node
-- One url that display only the player (for embeding)
+- One url that display only the player (for embedding)
 
 https://www.drupal.org/project/view_mode_page
 

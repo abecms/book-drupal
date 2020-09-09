@@ -128,6 +128,8 @@ A l'aide de Twig tweak :
 ```
 {{ drupal_entity('node', monNodeId, 'teaser') }}
 ```
+## Deux affichages différents pour un même node
+Pour pouvoir avoir 2 urls différentes pour un même node, utiliser le module https://www.drupal.org/project/view_mode_page
 
 ## Ajouter une classe sur un field
 1. Pour ajouter une classe "cp-box__btn" sur le lien des field_tags, montheme.theme doit être modifié:
