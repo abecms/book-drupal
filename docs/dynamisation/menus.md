@@ -34,6 +34,23 @@ Pour détecter si le lien est externe ou interne :
 {% endif %}
 ```
 
+## Pour détecter si le lien du menu est actif
+- utiliser la propriété `item.in_active_trail`
+```
+  {% import _self as menus %}
+  {{ menus.menu_links(items, attributes, 0) }}
+
+  {% macro menu_links(items, attributes, menu_level) %}
+    {% if items %}									
+      {% for item in items %}
+        <li>
+          <a class="link-nav color-dark{% if item.in_active_trail %} active{% endif %}" href="{{item.url}}" {% if item.url.isExternal() %} target="_blank" {% endif %} >{{item.title}}</a>
+        </li>
+      {% endfor %}
+    {% endif %}
+  {% endmacro %}
+```
+
 ## Sélecteur de langue :
 - Pour récupérer la valeur de la langue active :
 
