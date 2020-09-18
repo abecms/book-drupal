@@ -46,6 +46,10 @@ Ne pas cocher :
 - Afficher le sélecteur de langue sur les pages de création et d'édition.
 - Masquer les champs non traduisibles sur les formulaires de traduction
 
+### menu de navigation
+Paramètres personnalisés des langues
+- Cocher l'entrée `Custom menu link`
+
 ### Contenu Statique
 Aller dans :
 Administration => Configuration => Régionalisation et langue => Traduction de l'interface utilisateur
