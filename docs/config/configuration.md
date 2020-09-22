@@ -123,6 +123,10 @@ check_run composer.lock "composer install"
 
 Désormais, l'export et l'import de config sont auto sur la dev !
 
+## Favicon
+1. Ajouter l'image à la racine de votre thème
+1. Dans la configuration du thème dans la section favicon décocher "faviccon par défaut" et ajouter le path vers l'image ajoutée précédemment
+
 ## Mise en prod
 - Désactiver le DB logging (Disable and uninstall Database logging module https://docs.acquia.com/acquia-cloud/monitor/logs/)
 - Désactiver le stockage des recherches dans la BDD (https://docs.acquia.com/acquia-search/)
