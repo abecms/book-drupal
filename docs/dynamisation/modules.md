@@ -643,6 +643,14 @@ Si vous avez plusieurs champs :
 Si vous avez un seul champ :
 ``` {{ site_settings.group_name.site_setting_name }} ```
 
+Si vous avez une seule variable avec plusieurs champs
+`{{ site_settings.your_settings_group.your_setting_name.field_title }} `
+`{{ site_settings.your_settings_group.your_setting_name.field_subtitle }}`
+
+Si vous avez une seule variable avec plusieurs champs et des champs complexes
+`{{ site_settings.your_settings_group.your_setting_name.field_date.value }}`
+`{{ site_settings.your_settings_group.your_setting_name.field_date.options }}`
+
 Il semble qu'un bug dans site_settings empêche d'utiliser les entity reference normalement. Cela ne retient que l'id de l'entity reference. Il faut donc utiliser twig tweak :
 ```
 {{ drupal_entity('media', site_settings.theme.popup_teaser.field_video, 'popup') }}
