@@ -293,11 +293,10 @@ mypage-styling:
 ```
 1. Dans le fichier mymodule.theme au niveau du hook preprocess de la page, vérifier le node/type/nom/etc... de la page pour utiliser la librairie(library) souhaitée :
 ```
-function mymodule_preprocess_html(array &$variables) {
-  $path_args = explode('/', Url::fromRoute('<current>')->getInternalPath());
-
-  if($node = Node::load($path_args[1]) && $node->getType() == 'mypage') {
-    $variables['#attached']['library'][] = 'dalet/mypage-styling';
+function moet_preprocess_page(&$variables) {
+  $libraries = $variables['page']['#attached']['library'];
+  if ($variables['page']['#title'] == 'food pairing' || $variables['node']->type->getValue()[0]['target_id'] == 'quality' || $variables['node']->type->getValue()[0]['target_id'] == 'philosophy') {
+    array_push($libraries, 'moet/food-pairing-styling');
   }
 }
 ```
