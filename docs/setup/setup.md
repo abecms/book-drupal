@@ -293,10 +293,16 @@ mypage-styling:
 ```
 1. Dans le fichier mymodule.theme au niveau du hook preprocess de la page, vérifier le node/type/nom/etc... de la page pour utiliser la librairie(library) souhaitée :
 ```
-function moet_preprocess_page(&$variables) {
-  $libraries = $variables['page']['#attached']['library'];
-  if ($variables['page']['#title'] == 'food pairing' || $variables['node']->type->getValue()[0]['target_id'] == 'quality' || $variables['node']->type->getValue()[0]['target_id'] == 'philosophy') {
-    array_push($libraries, 'moet/food-pairing-styling');
+function moet_preprocess_html(&$variables) {
+  $variables['gtm_tracker'] = 0;
+  $language = \Drupal::config('language.negotiation')->get('url.prefixes');
+  $variables['language'] = $language[\Drupal::languageManager()->getCurrentLanguage()->getId()];
+
+  if ($variables['page']['#title'] == 'food pairing' || $variables['node_type'] == 'quality' || $variables['node_type'] == 'philosophy') {
+    $variables['page']['#attached']['library'][] = 'moet/food-pairing-styling';
+    if (($key = array_search('moet/global-styling', $variables['page']['#attached']['library'])) !== false) {
+      unset($variables['page']['#attached']['library'][$key]);
+    }
   }
 }
 ```
