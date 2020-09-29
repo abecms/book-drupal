@@ -44,7 +44,6 @@ protected function setMarkup() {
 1. dans l'admin `admin/config/user-interface/ajax-loader` Choisissez votre loader qui apparait dans la liste déroulante.
 
 
-
 ### color field
 1. Installer le module color field (https://www.drupal.org/project/color_field)
 2. Ajouter le champ color au contenu souhaité et le configurer dans la section "gérer l'affichage du formulaire"
@@ -644,6 +643,14 @@ Si vous avez plusieurs champs :
 Si vous avez un seul champ :
 ``` {{ site_settings.group_name.site_setting_name }} ```
 
+Si vous avez une seule variable avec plusieurs champs
+`{{ site_settings.your_settings_group.your_setting_name.field_title }} `
+`{{ site_settings.your_settings_group.your_setting_name.field_subtitle }}`
+
+Si vous avez une seule variable avec plusieurs champs et des champs complexes
+`{{ site_settings.your_settings_group.your_setting_name.field_date.value }}`
+`{{ site_settings.your_settings_group.your_setting_name.field_date.options }}`
+
 Il semble qu'un bug dans site_settings empêche d'utiliser les entity reference normalement. Cela ne retient que l'id de l'entity reference. Il faut donc utiliser twig tweak :
 ```
 {{ drupal_entity('media', site_settings.theme.popup_teaser.field_video, 'popup') }}
@@ -796,6 +803,14 @@ Methode pour appliquer le patch [title](https://github.com/abecms/book-drupal8/b
 #### Paiement CB
 - Pour conserver les infos CB : Saisir une phrase dans "Alias usage" pour afficher la case à cocher sur la page ingenico
 
+
+
+### View Mode Page
+Create separate pages for different view modes for a given content type. For example use this module if you need to have 2 differents urls for a same media content type :
+- One url that display the whole node
+- One url that display only the player (for embedding)
+
+https://www.drupal.org/project/view_mode_page
 
 ## Custom
 

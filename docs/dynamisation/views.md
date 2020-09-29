@@ -79,6 +79,9 @@ function customization_preprocess_views_view(&$variables) {
 
 Vous pourrez alors afficher le titre de la vue sur votre front : {{title}}
 
+## Compter les résultats d'une vue en-dehors de cette vue
+- {{ drupal_view_result('brand_plans', 'block_1')|length }}
+
 ## Passer une variable à une vue
 - Depuis Twig Tweak, on peut faire ça :
 ```
