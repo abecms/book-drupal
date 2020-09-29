@@ -87,6 +87,11 @@ function h1765_preprocess_views_view_field(&$variables, $hook) {
 }
 ```
 
+## Afficher la valeur d'une taxonomie
+```
+{{node.field_tour_adress.entity.name.value}}
+```
+
 ## Champs d'une taxonomie
 - pour récupérer la valeur d'un champ ajouté à une taxonomie :
 ```

@@ -2,24 +2,35 @@
 
 ## Partage d'un article
 ### Share sur Facebook
-``` <a href="//www.facebook.com/sharer/sharer.php?u={{ url('entity.node.canonical', {'node': node.id}) }}" target="_blank"> ```
+```
+<a href="//www.facebook.com/sharer/sharer.php?u={{ url('entity.node.canonical', {'node': node.id}) }}" target="_blank">
+```
 
 ### Share sur Twitter
-``` <a href="//twitter.com/home?status={{ url('entity.node.canonical', {'node': node.id}) }}" target="_blank"> ```
+```
+<a href="//twitter.com/home?status={{ url('entity.node.canonical', {'node': node.id}) }}" target="_blank">
+```
 
 ### Share sur Linkedin
-``` <a href="//www.linkedin.com/shareArticle?mini=true&url={{ url('entity.node.canonical', {'node': node.id}) }}" target="_blank"> ```
+```
+<a href="//www.linkedin.com/shareArticle?mini=true&url={{ url('entity.node.canonical', {'node': node.id}) }}" target="_blank">
+```
 
 ### Share sur Whatsapp
-```<a href="whatsapp://send?text={{ url('entity.node.canonical', {'node': node.id}) }}">```
+```
+<a href="whatsapp://send?text={{ url('entity.node.canonical', {'node': node.id}) }}">
+```
 
 ### Share sur Messenger (à tester uniquement sur mobile)
 - Necessite d'avoir une app_id valide
-```<a href="fb-messenger://share/?link={{ url('entity.node.canonical', {'node': node.id}) }}&app_id=1959734180995099"> ```
-
+```
+<a href="fb-messenger://share/?link={{ url('entity.node.canonical', {'node': node.id}) }}&app_id=1959734180995099">
+```
 
 ## Traduire les textes d'un thème
-``` title="{{ 'Go to next page'|t }} ```
+```
+title="{{ 'Go to next page'|t }}
+```
 
 Lorsque le code a été livré pour pouvoir le saisir en BO, il faut :
  - Vider le cache

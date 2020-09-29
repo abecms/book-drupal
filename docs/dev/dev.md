@@ -753,3 +753,14 @@ function MYMODULE_user_login($account)
   }
 }
 ```
+
+## Formater un champ de date Drupal en PHP
+
+A date field has two properties, value to store the date in UTC and date, a computed field returning a DrupalDateTime object, on which you can use the methods getTimestamp() or format():
+
+```
+// get unix timestamp
+$timestamp = $node->field_date->date->getTimestamp();
+// get a formatted date
+$date_formatted = $node->field_date->date->format('Y-m-d H:i:s');
+```
