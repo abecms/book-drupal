@@ -94,9 +94,16 @@ field_link.0.url.isExternal()
 ```
 
 ## Formater une date dans Twig
+Pour personnaliser une date
 ```
-{{ node.field_date.value | date('U') | format_date("custom", "l d F") }} pour personnaliser une date
+{{ node.field_date.value | date('U') | format_date("custom", "l d F") }}
 ```
+
+Pour prendre en compte une timezone
+```
+{{ node.field_date.value | date('d/m/Y', "Europe/Paris") }}
+```
+
 ## Connaitre les jours de différence entre 2 dates
 ```
 {% set difference = datePlusGrande - datePlusPetite %}
