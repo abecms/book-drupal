@@ -17,6 +17,18 @@ regions:
 1. Créer et personnaliser le twig du menu concerné
 1. Créer et personnaliser le block concerné
 
+
+## Connaitre l'url de la page courrante et l'afficher en twig
+- Le chemin abcolu 
+```
+{{ url('<current>') }}
+```
+
+- Le chemin relatif
+```
+{{ path('<current>') }}
+```
+
 ## Autre méthode d'affichage d'un menu
 On peut utiliser aussi twig_tweak :
 ```
