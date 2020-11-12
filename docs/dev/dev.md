@@ -764,3 +764,26 @@ $timestamp = $node->field_date->date->getTimestamp();
 // get a formatted date
 $date_formatted = $node->field_date->date->format('Y-m-d H:i:s');
 ```
+
+## Désactivé le zoom d'une page web en mobile dans safari/iOS
+
+La balise `<meta name="viewport" content="user-scalable=no/>` n'est plus prise en charge depuis iOS 10.
+Pour empécher le zoom (pincement et double-tap) d'une page web il faut ajouter en CSS :
+
+```css
+@media screen and (max-width: 479px) {
+  .body {
+    touch-action: pan-x pan-y;
+  }
+}
+```
+
+Si vous avez également besoin de désactiver le panning (ex: le scroll) il jaut également ajouter en CSS:
+
+```css
+@media screen and (max-width: 479px) {
+  .body {
+  touch-action: none;
+}
+}
+```
