@@ -784,6 +784,6 @@ Si vous avez également besoin de désactiver le panning (ex: le scroll) il jaut
 @media screen and (max-width: 479px) {
   .body {
   touch-action: none;
-}
+  }
 }
 ```
