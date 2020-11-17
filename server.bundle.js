@@ -22118,7 +22118,7 @@ Pour empécher le zoom (pincement et double-tap) d'une page web il faut ajouter 
 `)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`Si vous avez également besoin de désactiver le panning (ex: le scroll) il jaut également ajouter en CSS:`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("pre",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("code",Object(_home_runner_work_book_drupal_book_drupal_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"pre"},{"className":"language-css"}),`@media screen and (max-width: 479px) {
   .body {
   touch-action: none;
-}
+  }
 }
 `)));};MDXContent.isMDXComponent=true;
 
