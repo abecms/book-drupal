@@ -29,8 +29,9 @@ Note: The module is installed but not active.
 
 ### Ajax loader
 Pour remplacer le loader ajax drupal par un custom loader il faut :
+
 1. le module Ajax Loader - `https://www.drupal.org/project/ajax_loader`
-1. On copie le repertoire `modules/contrib/src/Plugin/ajax_loader` dans module le module customization `public/sites/default/modules/custom/customization/src/Plugin/ajax_loader`
+1. On copie le repertoire `modules/contrib/ajax_loader/src/Plugin/ajax_loader` dans le module customization `public/sites/default/modules/custom/customization/src/Plugin/ajax_loader`
 1. Les custom Loader commencent par `Trobbernomduloader.php`
 1. Ne garder qu'un seul fichier php et le renommer du nom du loader voulu `Trobbernomduclient.php` et
 remplacer dans le fichier la class et la fonction pour ne pas provoquer de conflit avec le nom voulu.
