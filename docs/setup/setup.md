@@ -145,14 +145,10 @@ Afin de définir les droits d'action (A publier, A corriger...) selon  les rôle
 1. Appliquer les droits attendus en fonction des rôles
 
 ## Attribution des droits "minimums" pour un rôle
-1. Accéder à l'admin
-- Voir le thème d'administration
-1. Accéder à la bare d'outil
-- Toolbar / Utiliser la barre d'outils d'administration
-1. Accéder aux menus autres que Contenu (Structure...)
-- Utiliser les pages d'administration et l'aide
-1. Accéder aux informations d'un contenu (auteur...)
-- Administrer le contenu
+1. Pour accéder à l'admin : Activer Voir le thème d'administration
+1. Accéder à la bare d'outil : Dans Toolbar / Activer Utiliser la barre d'outils d'administration
+1. Accéder aux menus autres que Contenu (Structure...) : Activer Utiliser les pages d'administration et l'aide
+1. Accéder aux informations d'un contenu (auteur...) : Activer Administrer le contenu et Accéder à la page de vue d'ensemble du contenu
 
 ## Configurer un autocomplete spécifique pour un champ referenced field
 - Créer une vue de type entity reference
