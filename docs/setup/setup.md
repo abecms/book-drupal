@@ -108,6 +108,7 @@ chmod u+x /usr/local/bin/composer
 ## Format de texte et editeur
  - On crée les formats dans config/redaction de contenu/formats de texte et editeur
  - On assigne un format en allant sur structure/type de contenu/ gérer les champs/ le champ concerné / modifier (onglet modifier) il y a en bas l'option "format de texte"...
+ - ATTENTON : Si une erreur s'affiche "Ce champ a été désactivé car vous n'avez pas les droits suffisants pour le modifier.", veillez à bien assigner le droit selon le rôle concerné. Dans config/redaction de contenu/formats de texte et editeur puis aller dans modifier pour ajouter le rôle.
 
 ## Worflow de validation
 1. Activer le module Content Moderation
