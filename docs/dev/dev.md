@@ -778,7 +778,7 @@ Pour empécher le zoom (pincement et double-tap) d'une page web il faut ajouter 
 }
 ```
 
-Si vous avez également besoin de désactiver le panning (ex: le scroll) il jaut également ajouter en CSS:
+Si vous avez également besoin de désactiver le panning (ex: le scroll) il faut également ajouter en CSS:
 
 ```css
 @media screen and (max-width: 479px) {
@@ -787,3 +787,17 @@ Si vous avez également besoin de désactiver le panning (ex: le scroll) il jaut
   }
 }
 ```
+# Modifier les messages de status drupal lors d'une modification/création d'un node
+1. Ajouter une fonction au submit de votre formulaire :
+```
+$form['actions']['submit']['#submit'][] = "test_function_submit";
+```
+1. Dans cette fonction vous pouvez modifier/ajouter des status aux messages par défaut drupal :
+```
+function test_function_submit() {
+  drupal_get_messages('status');
+  drupal_set_message('Votre annonce est publiée, elle sera mise en ligne sous 24h.', 'status');
+}
+```
+
+
