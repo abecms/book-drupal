@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://drupal.livingcolor.academy/blog</id>
+    <title>Drupal Stickers Book Blog</title>
+    <updated>2015-10-25T23:29:00.000Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://drupal.livingcolor.academy/blog"/>
+    <subtitle>Drupal Stickers Book Blog</subtitle>
+    <icon>https://drupal.livingcolor.academy/img/logo-white.png</icon>
+</feed>
