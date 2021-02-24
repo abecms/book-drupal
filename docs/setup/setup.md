@@ -108,6 +108,7 @@ chmod u+x /usr/local/bin/composer
 ## Format de texte et editeur
  - On crée les formats dans config/redaction de contenu/formats de texte et editeur
  - On assigne un format en allant sur structure/type de contenu/ gérer les champs/ le champ concerné / modifier (onglet modifier) il y a en bas l'option "format de texte"...
+ - ATTENTON : Si une erreur s'affiche "Ce champ a été désactivé car vous n'avez pas les droits suffisants pour le modifier.", veillez à bien assigner le droit selon le rôle concerné. Dans config/redaction de contenu/formats de texte et editeur puis aller dans modifier pour ajouter le rôle.
 
 ## Worflow de validation
 1. Activer le module Content Moderation
@@ -115,7 +116,8 @@ chmod u+x /usr/local/bin/composer
 1. Dans ETATS, ajouter les états qu'on souhaite utiliser dans le processus (e.g. A corriger, A publier). Par défaut il y a 2 états Draft et Publish.
 1. Dans TRANSITIONS, modifier ou ajouter les transitions qui définissent les enchainements d'états (e.g. Création de contenus, Contenus à publier)
 1. Dans LE PROCESSUS S'APPLIQUE A, sélectionner les types de contenus qui sont concernés par le processus
-1. Le processus est maintenant configuré, une liste déroulante apparait maintenant en lieu et place du bouton radio Published sur le formulaire de gestion des contenus. Cette liste permet de sélectionner les différents états qui ont été définis dans le processus.
+1. Pour chaque type de contenu concerné, vérifier que le champ "État de modération" est activé et appliquer le widget "État de modération" (vs Texte par défaut). Une liste déroulante apparait maintenant en lieu et place du bouton radio Published sur le formulaire de gestion des contenus. Cette liste permet de sélectionner les différents états qui ont été définis dans le processus.
+1. 
 
 ## Workflow de contribution
 1. Utilisation des modules Workflow et Content Moderation
@@ -145,14 +147,13 @@ Afin de définir les droits d'action (A publier, A corriger...) selon  les rôle
 1. Appliquer les droits attendus en fonction des rôles
 
 ## Attribution des droits "minimums" pour un rôle
-1. Accéder à l'admin
-- Voir le thème d'administration
-1. Accéder à la bare d'outil
-- Toolbar / Utiliser la barre d'outils d'administration
-1. Accéder aux menus autres que Contenu (Structure...)
-- Utiliser les pages d'administration et l'aide
-1. Accéder aux informations d'un contenu (auteur...)
-- Administrer le contenu
+1. Pour accéder à l'admin : Activer Voir le thème d'administration
+1. Accéder à la bare d'outil : Dans Toolbar / Activer Utiliser la barre d'outils d'administration
+1. Accéder aux menus autres que Contenu (Structure...) : Activer Utiliser les pages d'administration et l'aide
+1. Accéder aux informations d'un contenu (auteur...) : 
+- Activer Administrer le contenu
+- Accéder à la page de vue d'ensemble du contenu
+- Voir n'importe quel contenu non publié
 
 ## Configurer un autocomplete spécifique pour un champ referenced field
 - Créer une vue de type entity reference

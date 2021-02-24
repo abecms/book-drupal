@@ -20,7 +20,7 @@ module.exports = {
         alt: 'livingcolor',
         src: 'img/logo.png',
       },
-      links: [
+      items: [
         {to: 'docs/setup/introduction', label: 'Docs', position: 'left'},
         {
           href: 'https://github.com/facebook/docusaurus',

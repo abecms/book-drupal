@@ -44,3 +44,4 @@
       }
   });
   ```
+  1. To redirect to a specific page after a form submit use the query string `?destination=myPrettyRedirect`
