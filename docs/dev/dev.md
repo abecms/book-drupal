@@ -764,3 +764,61 @@ $timestamp = $node->field_date->date->getTimestamp();
 // get a formatted date
 $date_formatted = $node->field_date->date->format('Y-m-d H:i:s');
 ```
+
+
+# Create entities
+
+## Node
+
+### Create a field
+1. Step 1 : Create field storage.
+```
+\Drupal\field\Entity\FieldStorageConfig::create(array(
+  'field_name' => 'field_text',
+  'entity_type' => 'node',
+  'type' => 'text',
+  'cardinality' => -1,
+))->save();
+```
+
+2. Step 2 : Attach an instance of the field to the page content type.
+```
+\Drupal\field\Entity\FieldConfig::create([
+  'field_name' => 'field_text',
+  'entity_type' => 'node',
+  'bundle' => 'page',
+  'label' => 'A Text field',
+])->save();
+```
+
+Step 3 : Set From Display
+```
+entity_get_form_display('node', 'page', 'default')
+  ->setComponent('field_text', array(
+    'type' => 'text_textfield',
+  ))
+  ->save();
+```
+
+Step 4 : Set Display
+```
+entity_get_display('node', 'page', 'default')
+  ->setComponent('field_text', array(
+    'type' => 'text_default',
+  ))
+  ->save();
+```
+
+
+Load a field and check if it exists
+```
+$field_config = \Drupal\field\Entity\FieldStorageConfig::loadByName('node', 'field_text');
+```
+
+### get the View mode or Form view mode
+
+```
+\Drupal::service('entity_display.repository')->getViewDisplay('node', 'page');
+\Drupal::service('entity_display.repository')->getViewDisplay('node', 'article', 'teaser');
+\Drupal::service('entity_display.repository')->getFormDisplay('node', 'page');
+```
