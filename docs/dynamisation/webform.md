@@ -39,3 +39,15 @@ $sid = MaestroEngine::getEntityIdentiferByUniqueID($processID, 'submission');
     $webform_id = $webform->get('id');
   }
 ```
+
+# Recevoir en pièce jointe le détail de la soumission en PDF
+
+https://www.youtube.com/watch?v=Zj1HQNGTHFI
+
+- Vérifier que les modules Webform Entity Print (PDF) et Webform Entity Print (PDF) Attachment sont bien installés
+- Dans le webform concerné, ajouter un champ de type "Attachment PDF" /admin/structure/webform/manage/[WEBFORM]
+- Saisir à minima les champs Titre (qu'on retrouve dans la liste des champs du formulaire) et Nom du fichier (le nom du fchier qui sera reçu en pièce jointe)
+- Il faut maintenant d'associer la pièce jointe au mail envoyé. Allez dans Paramètre > Emails / Handlers pour créer ou mettre à jour le mail concerné
+- Dans la rubrique ATTACHMENTS cocher la case "Include files as attachments"
+
+
