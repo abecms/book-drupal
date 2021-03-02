@@ -47,7 +47,8 @@ https://www.youtube.com/watch?v=Zj1HQNGTHFI
 - Vérifier que les modules Webform Entity Print (PDF) et Webform Entity Print (PDF) Attachment sont bien installés
 - Dans le webform concerné, ajouter un champ de type "Attachment PDF" /admin/structure/webform/manage/[WEBFORM]
 - Saisir à minima les champs Titre (qu'on retrouve dans la liste des champs du formulaire) et Nom du fichier (le nom du fchier qui sera reçu en pièce jointe)
-- Il faut maintenant d'associer la pièce jointe au mail envoyé. Allez dans Paramètre > Emails / Handlers pour créer ou mettre à jour le mail concerné
+- Il faut maintenant associer la pièce jointe au mail envoyé. Allez dans Paramètre > Emails / Handlers pour créer ou mettre à jour le mail concerné
 - Dans la rubrique ATTACHMENTS cocher la case "Include files as attachments"
+- Pour personnaliser le fichier PDF, il faut utiliser le fichier entity-print.html.twig
 
 
