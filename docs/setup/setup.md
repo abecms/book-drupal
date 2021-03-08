@@ -553,3 +553,12 @@ The static should be put in files directory of the drupal.
 # Désactiver dblog
 
 `drush pm-disable dblog`
+
+
+# Aller voir les logs sur le cloud Acquia
+
+1. Posséder un compte Acquia cloud
+2. Se logguer à Acquia Cloud : `https://accounts.acquia.com/sign-in?site=cloud&path=a`
+3. Choisir l'application en cliquant sur le nom
+4. Les derniers déploiements sont listés dans le tableau `Task Log`
+5. Pour accéder aux logs cliquer sur la flêche à droite
