@@ -4,6 +4,10 @@ utiliser https://www.drupal.org/project/colorbutton/releases/8.x-1.1
 
 A noter qu'on peut choisir en configurant les boutons les couleurs proposées.
 
+## If plugin.js is not installed
+1. Download a plugin.js from https://ckeditor.com/cke4/addon/panelbutton (version >= 4.5.6) 
+2. Add it in the libraries/ folder : located at the root of the docroot folder.
+
 ## Allow style tag in ckeditor
 - ```admin/config/content/ckeditor/edit/Full```
 - ```Advanced content filter``` to ```disabled``` and ```save```
