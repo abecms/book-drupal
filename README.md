@@ -4,7 +4,7 @@ This website is built using [Docusaurus 2](https://v2.docusaurus.io/), a modern 
 
 ## Link doc
 
-Link : https://abecms.github.io/book-drupal/docs/introduction
+Link : https://drupal.livingcolor.academy/docs/dynamisation/menus/
 
 ### Installation
 
