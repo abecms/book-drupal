@@ -23,6 +23,12 @@ If you install search API, uninstall the search module (which is installed by de
 
 ### Configuration
 - Configure the server (SolR or ElasticSearch or Drupal DB)
+
+#### Solr
+
+Module utilisé : `https://www.drupal.org/project/search_api_solr`
+Config : `https://git.drupalcode.org/project/search_api_solr/-/blob/4.x/README.md`
+
 - Configure the index
 
 ### Search View
