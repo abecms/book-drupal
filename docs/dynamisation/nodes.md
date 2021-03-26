@@ -81,6 +81,8 @@ If the field has multiple values :
 ### Afficher le titre d'un champ de type lien
 ```
 field_link.title
+ou
+{{ content.field_custom_link.0['#title'] }}
 ```
 
 ### Tester si un champ de type lien est externe
@@ -91,6 +93,8 @@ field_link.0.url.isExternal()
 ### Mettre l'url d'un champ de type lien (link)
 ```
 {{node.field_url_offre.0.url}}
+ou
+{{ content.field_st_link.0['#url'] }}
 ```
 
 ## Formater une date dans Twig
