@@ -35,6 +35,27 @@ Par exemple pour une vue "agenda" qui affiche des nodes dont le type de contenu 
 1. Cliquer sur Advanced
 1. Use Ajax
 
+### Les suggestions en ajax (pager, filters, etc...)
+1. créer la suggestion souhaitée dans le .theme :
+```
+function harmonie_website_theme_suggestions_pager_alter(&$suggestions, array $variables) {
+  if ($node = \Drupal::routeMatch()->getParameter('node')) {
+    $suggestions[] = 'pager__' . $node->bundle();
+  }
+}
+```
+1. Pour vérifier si on rentre dans de l'ajax, on peut tester avec ce code : ```if ($isAjax = \Drupal::request()->isXmlHttpRequest())```
+1. Puis dans cette condition(=> if) ajouter le code pour la suggestion ajax souhaitée :
+```
+$current_path = \Drupal::service('path.current')->getPath();
+$path = \Drupal::service('path.alias_manager')->getPathByAlias($current_path);
+$arrNode = explode('/', $path);
+$nodeId = end($arrNode);
+if ($node = \Drupal\node\Entity\Node::load($nodeId)) {
+  $suggestions[] = 'pager__' . $node->bundle();
+}
+```
+
 Il faudra ensuite utiliser le module custom view_filter que nous avons créé
 #### Tips ajax
 1. Ne pas delete les div (contenant les classes js appropriées) dans les fichiers concernés : views-view.html.twig - container.html.twig et views-view-unformatted.html.twig
