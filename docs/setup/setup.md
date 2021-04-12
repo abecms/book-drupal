@@ -26,6 +26,7 @@
 - docroot/modules/contrib/entityqueue
 - docroot/modules/contrib/entity_print
 - docroot/modules/contrib/maxlength
+- composer require 'drupal/time_field'
 
 ### TAXONOMY
 - docroot/modules/contrib/hierarchical_term_formatter
@@ -117,7 +118,7 @@ chmod u+x /usr/local/bin/composer
 1. Dans TRANSITIONS, modifier ou ajouter les transitions qui définissent les enchainements d'états (e.g. Création de contenus, Contenus à publier)
 1. Dans LE PROCESSUS S'APPLIQUE A, sélectionner les types de contenus qui sont concernés par le processus
 1. Pour chaque type de contenu concerné, vérifier que le champ "État de modération" est activé et appliquer le widget "État de modération" (vs Texte par défaut). Une liste déroulante apparait maintenant en lieu et place du bouton radio Published sur le formulaire de gestion des contenus. Cette liste permet de sélectionner les différents états qui ont été définis dans le processus.
-1. 
+1.
 
 ## Workflow de contribution
 1. Utilisation des modules Workflow et Content Moderation
@@ -150,7 +151,7 @@ Afin de définir les droits d'action (A publier, A corriger...) selon  les rôle
 1. Pour accéder à l'admin : Activer Voir le thème d'administration
 1. Accéder à la bare d'outil : Dans Toolbar / Activer Utiliser la barre d'outils d'administration
 1. Accéder aux menus autres que Contenu (Structure...) : Activer Utiliser les pages d'administration et l'aide
-1. Accéder aux informations d'un contenu (auteur...) : 
+1. Accéder aux informations d'un contenu (auteur...) :
 - Activer Administrer le contenu
 - Accéder à la page de vue d'ensemble du contenu
 - Voir n'importe quel contenu non publié
