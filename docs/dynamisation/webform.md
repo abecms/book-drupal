@@ -51,4 +51,13 @@ https://www.youtube.com/watch?v=Zj1HQNGTHFI
 - Dans la rubrique ATTACHMENTS cocher la case "Include files as attachments"
 - Pour personnaliser le fichier PDF, il faut utiliser le fichier entity-print.html.twig
 
+# Créer un webform en mode wizard
 
+- Dans la création du formulaire, cliquer sur ADD PAGE
+- Un champ de type Wizard page apparait maintenant dans la structure du webform
+- Créer les différents champs qui doivent se trouver sur cette page et les glisser sous le champ Wizard page
+- Par défaut une barre de navigation par étape apparait maintenant en front au-dessus du formulaire 
+  - Pour ne pas afficher cette barre de progression : Aller dans Paramètres > Formulaire > FORM WIZARD SETTINGS, puis décocher la case 
+```Show wizard progress bar```
+  - Pour ne pas afficher la dernière étape du wizard décocher la case
+```Include confirmation page in progress```
