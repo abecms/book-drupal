@@ -98,6 +98,10 @@ function customization_preprocess_views_view(&$variables) {
 }
 ```
 
+## Personnaliser le nom des onglets (Block, Page) de la vue en BO
+- Sur la page de détail de la vue, cliquer sur le `Display name` (en haut de la page)
+- Mettre à jour le libellé
+
 Vous pourrez alors afficher le titre de la vue sur votre front : {{title}}
 
 ## Compter les résultats d'une vue en-dehors de cette vue
