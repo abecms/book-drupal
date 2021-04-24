@@ -466,3 +466,8 @@ Par défaut la recherche dans un champ de type "Entity reference" se fait sur le
 - Dans Page Settings choisir une URL pour y accéder depuis le menu d'admin (`Path:/admin/champagne-sorting`) par exemple et ou cette vue apparait dans le menu (par exemple `Menu:Normal: Champagne sortin...`) et la limiter au rôle d'admin (`Access:Role | Administrateur`)
 
 Le tour est joué ! Cette manip permet de proposer du glisser/déposer sur la vue dans l'admin, ce qui va modifier le poids des nodes et les ordonner en fonction de ces poids.
+
+## N'afficher sur le vue que les contenus de l'utilisateur connecté
+- Dans Advanced, ajouter une relation (RELATIONSHIPS) et choisir `User`
+- Dans Filter criteria, ajouter le critère User :
+  - Operator = Is equal to, Is the logged in user = Yes
