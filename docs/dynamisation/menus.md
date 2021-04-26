@@ -145,6 +145,7 @@ Keep the comment : This will render the item.link and populate the attributes (i
 1. Placer le bloc "Fil d'Ariane" dans la région "Fil d'Ariane".
 1. Pour l'utiliser sur les pages, dans le code : ``` {{ drupal_region('breadcrumb') }} ```
 1. Personnaliser les twig via les suggestions (exp: block--breadcrumb.html.twig ET/OU breadcrumb.html.twig)
+1. **UTILISER DE PREFERENCE PATHAUTO**
 
 Pour faire correspondre la valeur du breadcrumb avec pathauto :
 1. Décocher Use the real page title when available, Use menu title when available, Use page title as fallback for menu title
