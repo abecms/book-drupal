@@ -190,3 +190,26 @@ function customization_system_breadcrumb_alter(Breadcrumb &$breadcrumb, RouteMat
   }
 }
 ```
+
+#### Add new link as parent in the a breadcrumb
+```
+/**
+ * Implements hook_system_breadcrumb_alter().
+ */
+function customization_system_breadcrumb_alter(Breadcrumb &$breadcrumb, RouteMatchInterface $route_match, array $context) {
+  if ($route_match->getRouteName() == 'entity.node.canonical' && !is_null($route_match->getRawParameter('node'))) {
+    $node = Node::load($route_match->getRawParameter('node'));
+    $links = $breadcrumb->getLinks();
+    $parent = $node->get('field_st_target')->entity->name->value;
+    if (!is_null($node->get('field_st_breadcrumbs')->entity)) {
+      $parent = $node->get('field_st_breadcrumbs')->entity->name->value;
+    }
+
+    $parentLink = Link::fromTextAndUrl($parent, Url::fromRouteMatch($route_match));
+    $breadcrumb = new Breadcrumb();
+    $links[2] = $links[1];
+    $links[1] = $parentLink;
+    $breadcrumb->setLinks($links);
+  }
+}
+```
