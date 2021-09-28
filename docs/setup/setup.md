@@ -84,7 +84,7 @@
 ### CUSTOM LOADER
 - docroot/modules/contrib/ajax_loader
 
-## PROBLEME COMPOSER
+### PROBLEME COMPOSER
 
 Si vous rencontrer le message suivant à l'installation via composer :
 ```
@@ -168,6 +168,32 @@ ATTENTION, un patch est nécessaire (version D8 actuelle 8.7.* : "entity referen
 
 ## Redirect unauthorized users to a specific page
 In the admin : `http://mhisrmm.dev.dd:8083/admin/config/system/site-information` Put the URL you want in the error pages section (Default 403 (access denied page))
+
+## Customiser l'admin avec un css dédié (ex avec le thème par defaut seven)
+
+Vous pouvez charger un css custom depuis le hook d'un module.(remplacer XXX par le nom du module).
+1. Dans le dossier modules/custom/XXX créer un dossier css et copier son fichier css (e.g. css/admin.css)
+1. Déclarer une nouvelle library en créant le fichier XXX.library.yml et ajouter le code : 
+````
+extra.admin:
+  css:
+    theme:
+      css/admin.css: {}
+````
+1. Dans son fichier module ajouter le hook qui va charger la library : 
+````function customization_page_attachments(array &$attachments) {
+  $theme = \Drupal::theme()->getActiveTheme()->getName();
+  if ($theme == 'seven') {
+    $attachments['#attached']['library'][] = 'customization/extra.admin';
+  }
+}
+````
+
+
+
+
+
+
 
 # Développer
 
