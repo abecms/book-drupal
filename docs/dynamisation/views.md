@@ -198,6 +198,7 @@ Ils seront réécris avec la bonne url
 ## Exporter une vue en csv
 Permettre l'export du catalogue: utiliser les plugins csv_serialization et views_data_export.
 - Aller dans la vue et créer une vue exportation des données. Bien lister l'ensemble des infos et vérifier que dans format/paramètres, la case "csv" est bien cochée. Vérifier que la vue fonctionne puis mettre le chemin souhaité (ex. /admin/export/catalogue fichier: catalogue.csv). Aller dans Admin/Structure/menus/administration/ajouter un lien et mettre le lien vers cet export avec : /admin/export/catalogue?_format=csv
+- Dans CSV settings cocher la case "Include unicode signature (BOM)" 
 
 ## Filtrer par année
 ATTENTION : pour filtrer par année : il faut un patch a views : https://www.drupal.org/files/issues/2786577-270_0.patch
@@ -471,3 +472,24 @@ Le tour est joué ! Cette manip permet de proposer du glisser/déposer sur la vu
 - Dans Advanced, ajouter une relation (RELATIONSHIPS) et choisir `User`
 - Dans Filter criteria, ajouter le critère User :
   - Operator = Is equal to, Is the logged in user = Yes
+
+
+## Customiser une vue d'adnim avec son propre css
+- Créer un module (e.g.customization.module)et une nouvelle fonction pour attacher une library au thème d'admin utilisé
+````
+function customization_page_attachments(array &$attachments) {
+  $theme = \Drupal::theme()->getActiveTheme()->getName();
+  if ($theme == 'seven') {
+    $attachments['#attached']['library'][] = 'customization/extra.admin';
+  }
+}
+````
+- Créer le fichier libraries (e.g. customization.libraries.yml) et y référencer le fichier css custom
+`````
+extra.admin:
+  css:
+    theme:
+      css/admin.css: {}
+`````
+- Créer le fichier css à l'endroit indiquer dans la librairie
+- Personnaliser les classes
