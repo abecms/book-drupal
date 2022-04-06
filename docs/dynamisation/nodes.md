@@ -111,7 +111,15 @@ Pour prendre en compte une timezone
 ## Connaitre les jours de différence entre 2 dates
 ```
 {% set difference = datePlusGrande - datePlusPetite %}
+
 ```
+
+#### Affiché la date en Français
+```
+{{ node.field_review_date.value  | date('U') | format_date("custom", "d F Y")}}
+```
+ie: 17 novembre 2021
+
 ##### Pour afficher les jours :
 ```
 {% set leftDays = (difference / 60 / 60 / 24)|round(0, 'common') %}
