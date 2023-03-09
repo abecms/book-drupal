@@ -477,7 +477,7 @@ Le tour est joué ! Cette manip permet de proposer du glisser/déposer sur la vu
 ## Customiser une vue d'adnim avec son propre css
 - Créer un module (e.g.customization.module)et une nouvelle fonction pour attacher une library au thème d'admin utilisé
 ````
-function customization_page_attachments(array &$attachments) {
+function customization_preprocess_page(array &$attachments) {
   $theme = \Drupal::theme()->getActiveTheme()->getName();
   if ($theme == 'seven') {
     $attachments['#attached']['library'][] = 'customization/extra.admin';
@@ -491,5 +491,5 @@ extra.admin:
     theme:
       css/admin.css: {}
 `````
-- Créer le fichier css à l'endroit indiquer dans la librairie
+- Créer le fichier css à l'endroit indiquer dans la librairie dans le module
 - Personnaliser les classes
